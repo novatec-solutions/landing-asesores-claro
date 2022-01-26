@@ -1,0 +1,37 @@
+<div class="container">
+    <form>
+        <h1 class="titl title mt-4">Actualización de datos</h1>
+        <p class="centro ml-3">
+            <strong class="line1 centro">Digita el número de verificacion enviado a tu <strong class="line1s"></strong>número de celular.
+            <strong class="line2s"></strong>******{{lineNumber}}</strong>
+        </p>
+        <form #validacion="ngForm" (ngSubmit)="enviarBtn()">
+            <div class="form-row">
+                <div class="campo ml-3 mb-3">
+                    <input class="campo form-control" #input1="ngModel" name="input1" [(ngModel)]="datos.input1" id="input1" type="number" maxlength="1" onkeyup="if (this.value.length == this.getAttribute('maxlength'))  input2.value=null;input2.focus();" onkeypress="this.value=null"
+                        required>
+                </div>
+                <div class="campo ml-3">
+                    <input [(ngModel)]="datos.input2" name="input2" #input2="ngModel" id="input2" type="number" class="form-control" maxlength="1" onkeyup="if (this.value.length == this.getAttribute('maxlength')) input3.value=null;input3.focus(); " onkeypress="this.value=null"
+                        required>
+                </div>
+                <div class="campo ml-3">
+                    <input [(ngModel)]="datos.input3" name="input3" #input3="ngModel" id="input3" type="number" class="form-control" maxlength="1" onkeyup="if (this.value.length == this.getAttribute('maxlength')) input4.value=null;input4.focus();" onkeypress="this.value=null"
+                        required>
+                </div>
+                <div class="campo ml-3">
+                    <input [(ngModel)]="datos.input4" name="input4" #input4="ngModel" id="input4" type="number" class="form-control" maxlength="1" onkeyup="if (this.value.length == this.getAttribute('maxlength'))boton.focus();" onkeypress="this.value=null" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="boton mt-2 ml-3">
+                    <button [disabled]="validacion.invalid" (click)="enviarBtn()" type="submit" value="Enviar" id="boton" class="btn btn-block btn-danger">Verificar</button>
+                </div>
+            </div>
+        </form>
+        <div class="centro ml-3 mt-3">
+            <a href="javascript:void(0);" (click)="getOtp()" class="required">Enviar nuevamente el código de verificación</a>
+        </div>
+        <div id="div-spiner-load" role="status">
+            <span class="sr-only centered-spinner">Loading...</span>
+        </div>

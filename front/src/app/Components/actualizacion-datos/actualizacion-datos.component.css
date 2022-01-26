@@ -1,0 +1,100 @@
+.w100pct {
+    width: 1500px;
+}
+
+.adress {
+    width: 84%;
+}
+
+.smallAlert {
+    font-size: 14px!important;
+}
+
+.ml {
+    margin-left: 5px;
+}
+
+.centro {
+    margin-left: 18px;
+}
+
+.btnBis {
+    margin-top: -7px;
+    display: flex;
+    justify-content: center;
+    border-color: #EF3829!important;
+    margin-right: 0px;
+}
+
+.trans {
+    color: transparent;
+}
+
+.tel {
+    width: 94%;
+}
+
+/*.btnBis:hover {
+    color: white;
+    background-color: #EF3829!important;
+    ;
+}*/
+
+.bisselected {
+    background-color: #EF3829;
+    color: white;
+}
+
+.bisdisselected {
+    background-color: white;
+}
+
+@media (max-width: 992px) {
+    .btn {
+        width: 100%!important;
+    }
+}
+
+@media(max-width:767px) {
+    .form-row {
+        display: block;
+    }
+    .ml {
+        margin-left: 8px;
+    }
+    .adress {
+        width: 100%;
+        float: right;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .centro {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btnBis {
+        margin-top: -7px;
+        float: left;
+        font-size: 130%;
+        padding: 0px;
+        font-family: 'Roboto-Medium', sans-serif;
+        margin-bottom: -7px;
+        margin-right: 100px;
+    }
+    .numeral {
+        margin-top: 5px;
+    }
+    .sel {
+        width: 100%;
+    }
+    .smallAlert {
+        font-size: 12px!important;
+    }
+    .btn {
+        width: 50%!important;
+    }
+    .btn1 {
+      width: 100% !important;
+  }
+}

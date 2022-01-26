@@ -1,0 +1,57 @@
+.form-control{
+  height: 80px;
+}
+input{
+  font-size: 40px!important;
+  text-align: center;
+}
+.titl{
+  margin-left: 18px;
+}
+
+.campo{
+  display: inline;
+  width: 60px;
+}
+
+.boton{
+  width: 45%;
+}
+.centro{
+  font-family: 'Roboto-Medium', sans-serif;
+}
+
+@media(max-width:767px){
+  .campo{
+      display: inline;
+      width: 45px;
+  }
+
+  .form-row{
+      display: flex;
+      justify-content: center;
+  }
+
+  .boton{
+      width: 90%;
+  }
+  .titl{
+      margin-left: 0px;
+      margin-left: auto;
+      margin-right: auto;
+
+  }
+  .centro{
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display:inline-flexbox
+  }
+
+}
+
+
+
+
+
+
