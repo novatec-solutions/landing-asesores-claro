@@ -17,7 +17,7 @@ class MY_Controller extends REST_Controller {
 
     /*Lista de servicios que no toman el token*/
     public $dataInfo = array("data" => "aW5jb3JyZWN0VXNlcg==", "secret" => "YXNkZjEyMzQ=", "type" => "aes128");
-    public $arrMetodosSOAP = array("listarOfertaComercial");
+    public $arrMetodosSOAP = array("listarOfertaComercial","getCommunityInformation");
     //public $arrMetodosPOST = array("getCustomerDocuments");
     //public $arrMetodosGET = array("ListarAgenda");
     public $arrH = array("X-SESSION-ID","X-MC-LINE","X-MC-LOB","X-MC-MAIL","X-MC-SO","X-MC-SO-V");
@@ -26,9 +26,9 @@ class MY_Controller extends REST_Controller {
 
     public function retornar ($log,$res_data){
         //For call the log insert
-        // $this->load->library('LogLibrary');
-        // $this->loglibrary->save_to_file($log);
-        // $this->loglibrary->save_in_db($log);
+        $this->load->library('LogLibrary');
+        $this->loglibrary->save_to_file($log);
+        $this->loglibrary->save_in_db($log);
         /*
         if(in_array($this->metodo,$this->arrMetodosLOGS)){
             //$this->loglibrary->save_in_db($log); 
