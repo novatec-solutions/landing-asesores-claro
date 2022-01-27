@@ -1,0 +1,35 @@
+[
+  {
+    "PlanID": "17677",
+    "IsOpen": "false",
+    "PlanName": "Fácil 2016",
+    "PlanDescription": "<div style='text-align: center;'>Prepago F&aacute;cil 2016, en el que hablas a $1 segundo a tus 9 n&uacute;meros amigos, otros destinos $4, KB $0,204, SMS $60. Aplica Pico y Placa.<br /><br />&iexcl;Act&iacute;valo ahora!</div>",
+    "PlanCode": "4134",
+    "PlanAmount": "0",
+    "PlanVoiceUnit": "Segundos",
+    "FrequentNumbersAllowed": "",
+    "IsSharedDataPlan": "false"
+  },
+  {
+    "PlanID": "19601",
+    "IsOpen": "false",
+    "PlanName": "Prepago Control",
+    "PlanDescription": "<div style='text-align: center;'>¡Disfruta el plan Prepago Control!  Ahora podrás navegar comprando tus paquetes favoritos, hablar con todos tus amigos a solo $ 4 el segundo a todo destino nacional y mensajear a $ 60 a todo operador así como lo oyes. Además Inscribe un Elegido de Voz y habla sin costo los primeros 5 minutos de cada llamada. Aplica pico y placa. No aplica números Amigo.</div>",
+    "PlanCode": "4134",
+    "PlanAmount": "0",
+    "PlanVoiceUnit": "Segundos",
+    "FrequentNumbersAllowed": "",
+    "IsSharedDataPlan": "false"
+  },
+  {
+    "PlanID": "19797",
+    "IsOpen": "false",
+    "PlanName": "MegaSim",
+    "PlanDescription": "<div style='text-align: center;'>Plan Todo Incluido Mega Sim, recarga $40.000 o más y tienes 1GB de Navegación WA FB y TW incluidos, 200 Minutos y 1000 SMS, vigencia 30 Días.<br/>Actívalo ahora!</div>",
+    "PlanCode": "4009",
+    "PlanAmount": "0",
+    "PlanVoiceUnit": "Segundos",
+    "FrequentNumbersAllowed": "",
+    "IsSharedDataPlan": "false"
+  }
+]

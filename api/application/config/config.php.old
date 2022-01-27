@@ -24,18 +24,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //http://190.85.229.195/SelfCareManagement/SelfCareManagementService.svc
-//https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc
+//http://190.85.248.31/SelfCare/SelfCareManagementService.svc
 
 $config['api_key'] = 'a21c218df41f6d7fd032535fe20394e2';
-$config['base_url'] = 'http://'.$_SERVER["HTTP_HOST"].'/';
-
-$config['srvHost'] = $_SERVER['HTTP_HOST'];
-$config['srvProtocol'] = isset($_SERVER['HTTPS'])?'https':'http';
-$config['hostProtocol'] = (isset($_SERVER['HTTPS'])?'https':'http')."://".$_SERVER['HTTP_HOST'];
-$config['path_apisoap']=$config['hostProtocol']."/back/api/index.php/v1/soap/";
-$config['path_apirest']=$config['hostProtocol']."/back/api/index.php/v1/rest/";
-
-$config['path_m3']=$config['hostProtocol']."/back/M3/";
+$config['base_url'] = 'http://miclaroapp.com.co/';
 
 $config["app"]=array(
     "AES"=>"PUZ66Q9J",
@@ -48,107 +40,106 @@ $urlGPSDev = "http://192.168.18.109:8084/Webservices/wsRest/api.php?url=";
 $urlGPS = "http://192.168.18.44/WebServices/wsRest/api.php?url=";
 
 $config["servicios"]=array(
-            "getCMDataAccount"=>"https://172.31.228.201/pollerWs_V2/services/DiagResService?wsdl",
+
+            "getCMDataAccount"=>"https://172.31.228.201/pollerWs_test/services/DiagResService?wsdl",
             "getWifiDataIVR"=>"https://172.31.228.201/pollerWs_test/services/DiagResService?wsdl",
-            "getWifiData"=>"https://172.31.228.201/pollerWs_V2/services/DiagResService?wsdl",
             "cmSetWpaKey"=>"https://172.31.228.201/wifi_ws/services/WiFi?wsdl",
             "cmSetSsid"=>"https://172.31.228.201/wifi_ws/services/WiFi?wsdl",
             "cmSetEncMode"=>"https://172.31.228.201/wifi_ws/services/WiFi?wsdl",
-            "getInfoDHCPClient"=>"https://172.31.228.201/pollerWs_V2/services/DiagResService?wsdl",
-            "pingCM"=>"https://172.31.228.201/pollerWs_V2/services/DiagResService?wsdl",
 
             //legalizacion
-            "esLegalizada"=>"http://172.22.61.94:9026/WSAutolegalizacion/WSAutolegalizacionService?wsdl",
-            "validarDatosDemograficos"=>"http://172.22.61.94:9028/WSAutolegalizacion/WSAutolegalizacionService?wsdl",
+            "esLegalizada"=>"http://172.22.61.94:8080/WSAutolegalizacion/WSAutolegalizacionService?wsdl",
+            "validarDatosDemograficos"=>"http://172.22.61.94:8080/WSAutolegalizacion/WSAutolegalizacionService?wsdl",
             "legalizarLinea"=>"http://172.22.61.94:8080/WSAutolegalizacion/WSAutolegalizacionService?wsdl",
 
-            "retrieveIMEI"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
-            "retrievePlan"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
+            "retrieveIMEI"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
+            "retrievePlan"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
             "switchPlan"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
-            "retrievePlans"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BusinessAnalyticsManagement_PS?WSDL",
-            "retrieveBillDetails"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "retrieveCustomerData"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
-            "validateMobileNumber"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
-            "legalizeAccount"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
+            "retrievePlans"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BusinessAnalyticsManagement_PS?WSDL",
+            "retrieveBillDetails"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "retrieveCustomerData"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
+            "validateMobileNumber"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
+            "legalizeAccount"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
 
-            "ValidarRegistroCuentaClienteFija"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "ConsultarEstadoCuentaFija"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "CambiarNumeroMovil"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "ConfigurarFacturaElectronicaMovil"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "ConsultarInformacionCuentaMovil"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "CambiarPlanMovil"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "GenerarOTP"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "generarOTPUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "RegistroAliasCuenta"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "ValidarRegistroCuentaClienteFija"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "ConsultarEstadoCuentaFija"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "CambiarNumeroMovil"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "ConfigurarFacturaElectronicaMovil"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "ConsultarInformacionCuentaMovil"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "CambiarPlanMovil"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "GenerarOTP"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "generarOTPUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "RegistroAliasCuenta"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
 
-            "solicitudRecuperarClave"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "solicitudCambioClave"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "LoginUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "NotificarCompraPaqueteElegible"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "solicitudRecuperarClave"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "solicitudCambioClave"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "LoginUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "NotificarCompraPaqueteElegible"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
             //consulta la informacion de usuario
-            "ConsultarInformacionUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "ConsultarInformacionUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
             
-            "SolicitarCambioNombreUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "AsociarCuentaUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "ValidacionRegistroUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "RegistroUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "DesactivarCuentaUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "SolicitarCambioNombreUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "AsociarCuentaUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "ValidacionRegistroUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "RegistroUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "DesactivarCuentaUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
 
-            "ConsultarPaquetes"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "ConsultarPaquetes"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
 
             //Tokenizacion
-            "SolicitarTokenAutenticacionSSO"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "SolicitarTokenAutenticacionSSO"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
 
 
-            "retrievePaperlessPublications"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "retrievePaperlessNotifications"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "retrievePaperlessSubscriptions"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "retrievePaperlessPublications"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "retrievePaperlessNotifications"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "retrievePaperlessSubscriptions"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
 
 
-            "validateNumber"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
+            "validateNumber"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
 
 
-            "retrieveAccountHistory"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
+            "retrieveAccountHistory"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
 
-            "retrieveElectronicDocumentPDF"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "retrieveBillHistoryList"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "getPaperless"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "setPaperless"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
-            "retrieveConsumptionDetailInformation"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
-            "retrieveFrequentNumberDetailList"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/CustomerManagement_PS?WSDL",
-            "createFrequentNumber"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/CustomerManagement_PS?WSDL",
-            "deleteFrequentNumber"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/CustomerManagement_PS?WSDL",
-            "changePhoneNumber"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
-            "retrieveOTADevice"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
-            "registerIMEI"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
-            "retrieveContractDocument"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ContractManagement_PS?WSDL",
-            "getSubscriberInfo"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/UtilitySelfService_PS?WSDL",
+            "retrieveElectronicDocumentPDF"=>"http://172.24.35.240:80/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "retrieveBillHistoryList"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "getPaperless"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "setPaperless"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/BillingManagement_PS?WSDL",
+            "retrieveConsumptionDetailInformation"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
+            "retrieveFrequentNumberDetailList"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/CustomerManagement_PS?WSDL",
+            "createFrequentNumber"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/CustomerManagement_PS?WSDL",
+            "deleteFrequentNumber"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/CustomerManagement_PS?WSDL",
+            "changePhoneNumber"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
+            "retrieveOTADevice"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?WSDL",
+            "registerIMEI"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
+            "retrieveContractDocument"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/ContractManagement_PS?WSDL",
+            "getSubscriberInfo"=>"http://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/UtilitySelfService_PS?WSDL",
 
             //descargar factura hogar
 
             "document"=>"http://10.244.143.120:8013/WsVentaDigital/Proxies/searchVentaDigital_PS?wsdl",
-            "codificacionContrato"=>"http://172.24.160.134:8080/telmex/MTservice?WSDL",
-            //"codificacionContrato"=>"http://10.244.143.195:8013/OLM/Proxies/MTService_PS?wsdl",
-            "RegistrarConsultaContrato"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "codificacionContrato"=>"http://10.244.143.120:8013/OLM/Proxies/MTService_PS?wsdl",
+            "RegistrarConsultaContrato"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
             //HD
-            "consultaSerCliente"=>"http://172.24.160.134:8080/telmex/MTservice?wsdl",
-            "consultaSerClienteNew"=>"http://172.24.160.134:8080/telmex/MTservice?wsdl",
-            "adicionarServicios"=>"http://172.24.160.134:8080/telmex/MTservice?wsdl",
-            "adicionarNew"=>"http://172.24.160.134:8080/telmex/MTservice?wsdl",
+            "consultaSerCliente"=>"http://192.168.18.76:8090/telmex/MTservice?wsdl",
+            "adicionarServicios"=>"http://192.168.18.76:8090/telmex/MTservice?wsdl",
+            "adicionarNew"=>"http://192.168.18.76:8090/telmex/MTservice?wsdl",
             //REPOSICIONES
-            "ConsultarProductosRepos"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "ConsultarDetalleProducto"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "SolicitarPedido"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "ConsultarProductosRepos"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "ConsultarDetalleProducto"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "SolicitarPedido"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
             //CAMBIODEPLAN
-            "ConsultarPlanesPospago"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "ConsultarPlanesPospago"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
             //paquetesMundialistas
-            "ValidarCompraPaquetePartido"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "ComprarPaquetePartido"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "ValidarCompraPaquetePartido"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "ComprarPaquetePartido"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
             //Evidente
-            "ValidarUsuarioCliente"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "ValidarUsuarioCliente"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
 
             //enviar pin al correo
-            "GenerarOTPValidacionNombreUsuario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "GenerarOTPValidacionNombreUsuario"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+
+            //"codificacionContrato"=>"http://192.168.18.76:8090/telmex/MTservice?wsdl",
+            //"document"=>"https://miclaroapp.com.co/api2/index.php/v1/core/web/test.json?service=document",
 
 
             //Datos granel
@@ -171,10 +162,8 @@ $config["servicios"]=array(
             "itel215PaquetesDatos"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
             "itel216ConsumoPaquetesDatos"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
             "itel217ConsumoPaquetesDatosActivos"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
-            "itel308ModificarElegidos"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
             "itel409CompraPaqueresVoz"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
-            "itel400AprovAsesor"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
-            "itel226ConsultaArmaTuPaquete"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
+
             
 
             "retrieveBalances"=>"https://172.24.35.240/{PROJECT}/Services/Proxy_Pipelines/AccountManagement_PS?wsdl",
@@ -219,45 +208,41 @@ $config["servicios"]=array(
             //Consultar/Activar/Desactivar Familia y Amigos
             //"consultaFamiliaAmigos"=>"http://172.22.87.27:8102/WSFamiliaAmigos/WSFamiliaAmigosService?WSDL",
             //"activarDesactivarServicio"=>"http://172.22.87.27:8102/WSFamiliaAmigos/WSFamiliaAmigosService?WSDL",
-            "consultaFamiliaAmigos"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "activarDesactivarServicio"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "consultaFamiliaAmigos"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "activarDesactivarServicio"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
 
             //Referidos
-            "ConsultarCupon"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
-            "RedencionCupon"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "ConsultarCupon"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
+            "RedencionCupon"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
 			
 			//GPS
 			"ListarAgenda"=>$urlGPS."ConsultaAgendaMGW/ListarAgenda/{AccountId}",
 			"EstadoAgenda"=>$urlGPS."ConsultaAgendaMGW/EstadoAgenda/{idAgenda}",
 			"getActivities"=>"https://api.etadirect.com/rest/ofscCore/v1/activities/custom-actions/search?searchInField=apptNumber&searchForValue={orden}&dateFrom={fechaIni}&dateTo={fechaFin}",
 			"getDetalleVisita"=>"https://api.etadirect.com/rest/ofscCore/v1/activities/{activityId}",
-			"getDetalleTecnico"=>"https://amx-res-co.etadirect.com/rest/ofscCore/v1/resources/{resourceId}",
-			"getSmartLocation"=>"https://amx-res-co.etadirect.com/rest/ofscCore/v1/resources/'.$data->resourceId.'/locations",
+			"getDetalleTecnico"=>"https://api.etadirect.com/rest/ofscCore/v1/resources/{resourceId}",
+			"getSmartLocation"=>"https://api.etadirect.com/soap/location/?wsdl",
 			"envioCorreoVisita"=>$urlGPS."ConsultaAgendaMGW/EnvioMailAgenda/{orden}/{tipo}/{correo}/1",
 			"cancelarVisita"=>$urlGPS."ConsultaAgendaMGW/SolicitarCancelacionAgenda/{orden}/{tipo}/{idMotivo}/{observaciones}",
             
             //Elegidos fija
-            //"retrievePlanFija"=>"http://172.24.160.135:8080:8080/SelfServiceFixed_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
-            "retrievePlanFija"=>"http://172.24.160.135:8080/SelfServiceFixed_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
+            "retrievePlanFija"=>"http://172.24.35.240:8080/SelfServiceFixed_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
             //"consultarTest"=>"https://10.244.143.134/OperacionElegidoEJB/OperacionElegidoEJBService?wsdl",
             "realizarOperacion"=>"https://10.244.143.134/OperacionElegidoEJB/OperacionElegidoEJBService?wsdl",
             "consulta_fijo_masivo"=>"http://172.22.84.4:8080/AmigoClaroFijoWS/AmigoClaroFijo?WSDL",
             "RecSinergia"=>"http://172.22.84.4:8080/AmigoClaroFijoWS/AmigoClaroFijo?WSDL",
 
             //blindaje
-            "AceptarPropuestaOferta"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?WSDL",
+            "AceptarPropuestaOferta"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?WSDL",
 
             //lista paquetes por categoria
-            "ConsultarCatalogoPaqueteRecarga"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "ConsultarCatalogoPaqueteSaldo"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "ConsultarCatalogoPaqueteRecarga"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
             //Blindaje
             "getSicconBlindaje"=>"http://172.23.50.167:7003/siccon-webservices/api",
             "historicoPaquetes"=>"http://172.23.50.167:7003/siccon-webservices/api",
             //IMEI            
-            //"ConsultarImei"=>"http://172.24.129.95:8002/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?wsdl",
-            "ConsultarImei"=>"http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
-            //"RegistrarImei"=>"http://172.24.129.95:8002/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?wsdl",
-            "RegistrarImei"=>"http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
+            "ConsultarImei"=>"http://172.24.129.95:8002/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?wsdl",
+            "RegistrarImei"=>"http://172.24.129.95:8002/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?wsdl",
             //IMEI 2
             //"RegistrarImeiDuplicado" => "http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
             "RegistrarImeiDuplicado" => "http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
@@ -266,10 +251,10 @@ $config["servicios"]=array(
             "consultaInformacion"=>"http://172.22.61.94:9028/WSRegistroEquipos/WSRegistroEquiposService?WSDL",
             "ConsultaInfo"=>"http://172.22.61.94:9028/WSRegistroEquipos/WSRegistroEquiposService?WSDL",
             //blindaje
-            "ConsultarOfertaBeneficioMovil"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "AceptarOfertaBeneficioMovil"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "ConsultarOfertaBeneficioFija"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "AceptarOfertaBeneficioFija"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "ConsultarOfertaBeneficioMovil"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "AceptarOfertaBeneficioMovil"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "ConsultarOfertaBeneficioFija"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
+            "AceptarOfertaBeneficioFija"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
 
             /****INSPIRA****/
             //Tabla Bridge            
@@ -295,68 +280,14 @@ $config["servicios"]=array(
             "consultarPaqueteComplementario" => "http://172.22.61.94:9024/WSPaquetesComplementarios/WSPaquetesComplementariosService?wsdl",
             "activarPaquete" => "http://172.22.61.94:9024/WSPaquetesComplementarios/WSPaquetesComplementariosService?wsdl",
             "desactivarPaquete" => "http://172.22.61.94:9024/WSPaquetesComplementarios/WSPaquetesComplementariosService?wsdl",
-            "ConsultarOfertaBeneficioMovilPrepago"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "NotificarCompraPaqueteComplementario"=>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
+            "ConsultarOfertaBeneficioMovilPrepago"=>"http://190.85.248.31/SelfCare/SelfCareManagementService.svc?wsdl",
             //RoamingInternacional
-            "retrieveRoamingService"=>"http://172.24.160.135:8080/SelfServiceMobile_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
-            //"activateRoamingService"=>"http://172.24.160.135:8080:8080/SelfServiceMobile_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
-            "activateRoamingService"=>"http://172.24.160.135:8080/{PROJECT}/Services/Proxy_Pipelines/ServiceManagement_PS?WSDL",
-            "addVAS"=>"http://172.24.160.135:8080/SelfServiceMobile_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
-            //NIP
-            "ValidateUserAppNIP"=>"http://172.24.160.135:8080/NIPService_Project/Services/Proxy_Pipelines/NIPService_Main_PS?WSDL",
-            "ApplyNIP"=>"http://172.24.160.135:8080/NIPService_Project/Services/Proxy_Pipelines/NIPService_Main_PS?WSDL",
-            //Pasatiempos
-            "validarCondiciones" => "http://172.22.61.94:9026/PasaTiempoWS/PasatiempoWS?WSDL",
-            "validarRecarga" => "http://172.22.61.94:9026/PasaTiempoWS/PasatiempoWS?WSDL",
-            "ejecutaPasatiempo" => "http://172.22.61.94:9026/PasaTiempoWS/PasatiempoWS?WSDL",
-            //IMEI-->3
-            "ConsultarImei" => "http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
-            //Traslados
-            "TransladoDigitalRS"=>"http://172.24.160.148:8080/wsDime/Proxies/trasladoDigital_PS",
-
-            //"conWS_Result"=>"http://172.24.160.127:9011/FinancingIntegrator/Core/Proxies/consultaFinanciacionDetallada_PS?WSDL",
-            "conWS_Result"=>"http://finequipos.comcel.com.co:9011/FinancingIntegrator/Core/Proxies/consultaFinanciacionDetallada_PS?wsdl",
-
-            "ReportarRoboPerdidaImei" => "http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
-            //Rio
-            "RegistrarCuentaListaBlancaRIO" =>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            //SubidaYBajada
-            "ConsultarVelocidadServicioInternetHogar" =>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            //Compra de Paquetes Roaming
-            "ConsultarCatalogoPaqueteRoaming" =>"https://portalpagosselfcare.claro.com.co/SelfcarePRE/SelfCareManagementService.svc?wsdl",
-            "comprarPaquetes"=>"http://172.22.61.94:9024/WSRoamingConvertible/WSRoamingConvertibleService",
-            //Compra de Paquetes recurrentes Prepago (Activar)
-            "ActivarPaqueteRecurrente" =>"http://172.24.160.134:8083/WSPaquetesBundle/WsPaquetesBundleService?WSDL",
-            //Compra de Paquetes recurrentes Prepago (Desactivar)
-            "DesactivarSuscripcion" =>"http://172.24.160.134:8083/WSPaquetesBundle/WsPaquetesBundleService?WSDL",
-            //Compra de Paquetes recurrentes Prepago (Consultar)
-            "ConsultaSuscripcion" =>"http://172.24.160.134:8083/WSPaquetesBundle/WsPaquetesBundleService?WSDL",
-            //DatosDEmograficos 2
-            "updateSubscriber2" =>"http://192.168.18.122:8080/telmex/PcmlService?wsdl",
-            //BloquearSimCard
-            "BloquearSimCard" => "http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
-            "getCitiConsumoV2" =>"http://172.23.50.167:7003/siccon-webservices/api/soap",
-            "ConsultarImeiBDA" =>"http://172.24.160.135:8080/GestionImeiV1/Proxies/GestionImeiServiceV1.0_PS?WSDL",
-            "consultarInfoPlan"=>"http://172.24.160.134:8083/WSConsultarInfoPlan/WSConsultarInfoPlan?WSDL",
-            "clcamr01"=>"http://192.168.5.25:10021/web/services/CLCAMR01Service/CLCAMR01?wsdl",
-            "ConsultaHistorico"=>"http://172.22.61.94:9024/WSConsultaFacturaHistorico/WSConsultaFacturaHistoricoService?WSDL",
-            "ConsultaFacturaDetalle"=>"http://172.22.61.94:9024/WSConsultaFacturaHistorico/WSConsultaFacturaHistoricoService?WSDL",
-            "LastOnlinePayment"=>"http://172.24.160.139:8080/PaymentEnquiries_Project/Services/Proxy_Pipelines/PaymentEnquiriesManagement_PS?wsdl",
-            "detalleConsumosPospago"=>"http://172.23.50.167:7003/siccon-webservices/api",
-            "itel225ConsultaRecurrentes"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
-            "itel421CompraPaqRecurrentes"=>"http://itelnn.comcel.com.co:9999/ITEL/Core/Proxies/ejecutarTramaEspecifica_PS?wsdl",
-            "HistoryPayment"=>"http://172.24.160.139:8080/PaymentEnquiries_Project/Services/Proxy_Pipelines/PaymentEnquiriesManagement_PS?wsdl",
-            "validacion_"=>"http://172.24.160.135:8080/wsValidaciones/Proxies/WsValidaciones_PS?wsdl",
-            "ConsultarMatrizDeCubrimiento"=>"http://apps.logytechmobile.com/NotusCEMWcfServiceEcomer/NotusCEMService.svc?wsdl",
-            "RegistrarPedidoCEM"=>"http://apps.logytechmobile.com/NotusCEMWcfServiceEcomer/NotusCEMService.svc?wsdl",
-            "AsignarCita"=>"http://172.22.83.242/AdministradorTurnosWs/Citas.svc",
-            "ConfirmarCita"=>"http://172.22.83.242/AdministradorTurnosWs/Citas.svc",
-            "ConsultarDisponiblidad"=>"http://172.22.83.242/AdministradorTurnosWs/Citas.svc"
-           
+            "retrieveRoamingService"=>"http://172.24.35.240:8080/SelfServiceMobile_Project/Services/Proxy_Pipelines/ServiceManagement_PS",
+            "activateRoamingService"=>"http://172.24.35.240:8080/SelfServiceMobile_Project/Services/Proxy_Pipelines/ServiceManagement_PS"
+            
     );
 
 $config["selfcare"]=array(
-      "RegistrarCuentaListaBlancaRIO"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/registrarCuentaListaBlancaRIO\"",
       "AceptarOfertaBeneficioFija"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/aceptarOfertaBeneficioFija\"",
       "ConsultarOfertaBeneficioFija"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarOfertasBeneficioFija\"",
       "AceptarOfertaBeneficioMovil"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/aceptarOfertaBeneficioMovil\"",
@@ -375,9 +306,7 @@ $config["selfcare"]=array(
         "LoginUsuario"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/loginUsuario\"",
         "NotificarCompraPaqueteElegible"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/notificarCompraPaqueteElegible\"",
         "SolicitarCambioNombreUsuario"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/solicitarCambioNombreUsuario\"",
-        "ConsultarVelocidadServicioInternetHogar"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarVelocidadServicioInternetHogar\"",
-        "ConsultarCatalogoPaqueteRoaming"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarCatalogoPaqueteRoaming\"",
-        
+
         "ConsultarInformacionUsuario"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarInformacionUsuario\"",
 
         "AsociarCuentaUsuario"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/asociarCuentaUsuario\"",
@@ -402,18 +331,9 @@ $config["selfcare"]=array(
         "ValidarCompraPaquetePartido"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/validarCompraPaquetePartido\"",
         "ComprarPaquetePartido"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/comprarPaquetePartido\"",
         "ConsultarCatalogoPaqueteRecarga"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarCatalogoPaqueteRecarga\"",
-        "ConsultarCatalogoPaqueteSaldo"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarCatalogoPaqueteSaldo\"",
         "ValidarUsuarioCliente"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/validarUsuarioCliente\"",
         "ConsultarOfertaBeneficioMovilPrepago"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/consultarOfertaBeneficioMovilPrepago\"",
-        "NotificarCompraPaqueteComplementario"=>"SOAPAction: \"Claro.SelfCareManagement.Services.Entities.Contracts/SelfCareManagementService/notificarCompraPaqueteComplementario\"",
-        "GetCustomerInformation"=>"SOAPAction: \"http://tempuri.org/IReplacementService/GetCustomerInformation\"",
-        "clcamr01"=>"SOAPAction: \"\"",
-        "ConsultarMatrizDeCubrimiento"=>"SOAPAction: \"http://NotusCEMWfcService.logytechmobile.com/INotusCEMService/ConsultarMatrizDeCubrimiento\"",
-        "RegistrarPedidoCEM"=>"SOAPAction: \"http://NotusCEMWfcService.logytechmobile.com/INotusCEMService/RegistrarPedidoCEM\"",
-        "AsignarCita"=>"SOAPAction: \"http://tempuri.org/ICitas/AsignarCita\"",
-            "ConsultarDisponiblidad"=>"SOAPAction: \"http://tempuri.org/ICitas/ConsultarDisponiblidad\"",
-            "ConfirmarCita"=>"SOAPAction: \"http://tempuri.org/ICitas/ConfirmarCita\""
-
+        "GetCustomerInformation"=>"SOAPAction: \"http://tempuri.org/IReplacementService/GetCustomerInformation\""
     );
 
 
