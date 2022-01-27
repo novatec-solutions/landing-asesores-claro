@@ -19,8 +19,8 @@ return [
 
         // monolog settings
         'logger' => [
-            'name' => 'restAppLegalizacionPrep',
-            'path' => __DIR__ . '/../log/restAppLegalizacionPrep.log',
+            'name' => 'restAppAsesores',
+            'path' => __DIR__ . '/../log/restAppAsesores.log',
         ],
 
         // doctrine settings
@@ -31,7 +31,8 @@ return [
             'metadata_dirs' => [__DIR__ . '/src/entity/generated'],
             'entity_path' => [__DIR__ . '/src/entity'],
             'auto_generate_proxies' => true,
-            'proxy_dir' =>  __DIR__.'/../cache/proxies',
+            'proxy_dir' =>  __DIR__.'/../cache/proxies'
+            /*,
             'connection' => [
                 'driver' => $_ENV['DB_CONNECTION'],
                 'host' => $_ENV['DB_HOST'],
@@ -40,7 +41,7 @@ return [
                 'user' => $_ENV['DB_USERNAME'],
                 'password' => $_ENV['DB_PASSWORD'],
                 'charset' => $_ENV['DB_CHARSET']
-            ]
+            ]*/
         ]
     ],
 ];
