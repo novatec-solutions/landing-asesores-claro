@@ -1,0 +1,1 @@
+# Esta Carpeta contendra la informacion de los textos desde BD

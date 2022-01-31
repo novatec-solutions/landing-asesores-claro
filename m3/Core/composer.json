@@ -1,0 +1,32 @@
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jsngonzalez/curl-wigi-m3",
+                "version": "dev-master",
+                "source": {
+                    "url": "https://github.com/jsngonzalez/curl-wigi-m3.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-0": {
+                        "wigilabs\\curlWigiM3": "src"
+                    }
+                }
+            }
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/php-view": "^2.2",
+        "jsngonzalez/curl-wigi-m3": "dev-master",
+        "tebru/aes-encryption": "^0.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "M3\\": "../../M3"
+        }
+    }
+}

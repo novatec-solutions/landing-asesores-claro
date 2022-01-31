@@ -49,8 +49,10 @@ $urlGPS = "http://192.168.18.44/WebServices/wsRest/api.php?url=";
 
 $config["servicios"]=array(
             "listarOfertaComercial"=>"http://172.22.61.94:9024/WSPaquetesComplementarios/WSPaquetesComplementariosService?wsdl",
-            "getCommunityInformation"=>"http://172.24.35.235:80/CommunityServiceApplication_SBProject/Proxies/CommunityInformationWS_PS?WSDL"
+            "getCommunityInformation"=>"http://172.24.35.235:80/CommunityServiceApplication_SBProject/Proxies/CommunityInformationWS_PS?WSDL",
             //"ListarAgenda"=>$urlGPS."ConsultaAgendaMGW/ListarAgenda/{AccountId}",
+            "login"=>"?WSDL"
+            
         );
 
 $config["selfcare"]=array(

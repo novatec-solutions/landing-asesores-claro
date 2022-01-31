@@ -1,0 +1,25 @@
+{
+    "name": "m3/service_text_doctrine",
+    "description": "Uso de Doctrine para las consultas de textos desde la BD",
+    "type": "project",
+    "require": {
+        "doctrine/orm": "^2.7",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "*\\": "/Entity/"
+        },
+        "psr-0": {"": "Entity/"}
+    },
+    "authors": [
+        {
+            "name": "Mauricio Cantor",
+            "email": "nestor.cantorp@claro.com.co"
+        }
+    ],
+    "config": {
+        "bin-dir": "bin"
+    }
+}
