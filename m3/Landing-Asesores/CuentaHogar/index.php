@@ -22,7 +22,7 @@ $container['requestTemplate']="request.php";
 
 
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
-    //print("Ingresa"); die;
+    print("Ingresa"); die;
     //$headers = $request->getHeaders();
     $json = json_decode( $request->getBody() );
     $data=$json->data;
