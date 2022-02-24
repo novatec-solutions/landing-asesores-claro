@@ -15,14 +15,14 @@ $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__.'/template/');
 $container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
 
-$userMaps = array(
-    'user' => 'asesor1',
-    'pass' => '123456',
-    'name' => 'Gabriel Pérez',
-);
-
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
     
+    $userMaps = array(
+        'user' => 'asesor1',
+        'pass' => '123456',
+        'name' => 'Gabriel Pérez',
+    );
+
     $data = json_decode( $request->getBody() );
 
     var_dump($data);
