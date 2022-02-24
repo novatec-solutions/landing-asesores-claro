@@ -26,6 +26,8 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $data = json_decode( $request->getBody() );
 
     var_dump($data);
+    var_dump($data->user);
+    var_dump($userMaps);
     die;
     
     $respuesta = array();
@@ -38,7 +40,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $respuesta["mensaje"] = "Usuario o contraseña incorrectos";
     }
 
-    return $response->withJson($userMaps)->withHeader('Content-type', 'application/json'); 
+    return $response->withJson($respuesta)->withHeader('Content-type', 'application/json'); 
     
 });
 
