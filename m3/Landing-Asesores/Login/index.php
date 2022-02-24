@@ -24,6 +24,9 @@ $userMaps = array(
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
     
     $data = json_decode( $request->getBody() );
+
+    var_dump($data);
+    die;
     
     $respuesta = array();
     if($userMaps["user"] == $data->user && $userMaps["pass"] == $data->pass){
