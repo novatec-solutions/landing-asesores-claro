@@ -26,7 +26,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $json = json_decode( $request->getBody() );
     $data=$json->data;
 
-    var_dump($data);
+    var_dump($json);
     die;
     
     $respuesta = array();
