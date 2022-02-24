@@ -11,10 +11,8 @@ use \Psr\Http\Message\ResponseInterface as Response;
 // Se crea la app
 $app = new \Slim\App();
 
-
 $app->map(['GET'], '/', function (Request $request, Response $response, array $args) {
     return $response->withStatus(403);
 });
-
 
 $app->run();
