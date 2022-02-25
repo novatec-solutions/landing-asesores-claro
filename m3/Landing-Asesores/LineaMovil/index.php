@@ -54,22 +54,31 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
             //print_r($dataRes);die;
             //print_r(strval($dataRes->ns2readResponse->ns2resultCode));die;
             if( strval($dataRes->ns2readResponse->ns2resultCode) == 0){
-                $dataRes = $dataRes->ns2readResponse;
+                $dataRes = $dataRes->ns2readResponse->ns2data;
+                
+                $customerId = strval($dataRes->ns2customerId);
+                $providerId = strval($dataRes->ns2providerId);
+                $idNumber = strval($dataRes->ns2idNumber);
+                $fixedAccount = strval($dataRes->ns2fixedAccount);
+                $operatorUserId = strval($dataRes->ns2operatorUserId);
+                $emailAddress = strval($dataRes->ns2emailAddress);
+                $firstName = strval($dataRes->ns2firstName);
+                $lastName = strval($dataRes->ns2lastName);
+                $arrayResponse = [
+                    'customerId'=>$customerId,
+                    'providerId'=> $providerId,
+                    'idNumber'=> $idNumber,
+                    'fixedAccount'=> $fixedAccount,
+                    'operatorUserId'=> $operatorUserId,
+                    'emailAddress'=> $emailAddress,
+                    'firstName'=> $firstName,
+                    'lastName'=> $lastName
+                ];
+                $respuesta["response"] = $arrayResponse;
                 $respuesta["error"] = 0;
-                /*$respuesta["ns2customerId"] = strval($dataRes->ns2data->ns2customerId);
-                $respuesta["ns2idNumber"] = strval($dataRes->ns2data->ns2idNumber);
-                $respuesta["ns2resultMessage"] = strval($dataRes->ns2data->ns2resultMessage);*/
-                $respuesta["ns2customerId"] = strval($dataRes->ns2data->ns2customerId);
-                $respuesta["ns2providerId"] = strval($dataRes->ns2data->ns2providerId);
-                $respuesta["ns2idNumber"] = strval($dataRes->ns2data->ns2idNumber);
-                $respuesta["ns2fixedAccount"] = strval($dataRes->ns2data->ns2fixedAccount);
-                $respuesta["ns2operatorUserId"] = strval($dataRes->ns2data->ns2operatorUserId);
-                $respuesta["ns2emailAddress"] = strval($dataRes->ns2data->ns2emailAddress);
-                $respuesta["ns2firstName"] = strval($dataRes->ns2data->ns2firstName);
-                $respuesta["ns2lastName"] = strval($dataRes->ns2data->ns2lastName);
             }else{
                 $respuesta["error"] = 1;
-                $respuesta["descripcion"] = strval($dataRes->ns2readResponse->ns2resultMessage);
+                $respuesta["response"] = strval($dataRes->ns2readResponse->ns2resultMessage);
             }
         }
     }else {
