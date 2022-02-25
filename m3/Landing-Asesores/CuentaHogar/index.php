@@ -17,8 +17,7 @@ $container['view'] = new \Slim\Views\PhpRenderer(__DIR__.'/template/');
 $container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
 
 //Url del servicio
-//$container['urlServicio']="http://172.22.61.94:9024/WSRoamingConvertible/WSRoamingConvertibleService";
-$container['urlServicio']="http://172.24.160.161:8600/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";
+$container['urlServicio']="http://172.24.160.161:8600/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";//  Desarrollo - QA
 
 //Nombre del template Request
 $container['requestTemplate']="request.php"; 
