@@ -30,7 +30,6 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     //$headers = $request->getHeaders();
     $json = json_decode( $request->getBody() );
     $data=$json->data;
-    //var_dump($data);die;
 
     $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $data]);
     
@@ -40,14 +39,12 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $header[]="";
     
     $dataRes=$this->curlWigi->soap($header,true,true);
-    //var_dump($dataRes);die;
-    
+
     /************************LOGICA DE RESPONSE***************************/
     
     $respuesta = array();
     if($dataRes["error"] == 0){
-        //print_r($dataRes);die;
-        //Tag que envia el servicio
+        
         $tagResp = "ns2rootReadResponse";
 
         $respuesta["secs"] = $dataRes["secs"];
@@ -55,8 +52,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         
         if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
             $dataRes = $dataRes["response"]->$tagResp;
-            //print_r($dataRes);die;
-            //print_r(strval($dataRes->ns2readResponse->ns2resultCode));die;
+            
             if( strval($dataRes->ns2readResponse->ns2resultCode) == 0){
                 $dataRes = $dataRes->ns2readResponse->ns2data;
                 

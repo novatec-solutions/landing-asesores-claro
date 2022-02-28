@@ -42,30 +42,27 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $respuesta = array();
     if($dataRes["error"] == 0){
-        //Tag que envia el servicio
+        
         $tagResp = "Root-Element";
         
         $respuesta["secs"] = $dataRes["secs"];
         $respuesta["tiempo"] = $dataRes["tiempo"];
         
         if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
-            //print_r($dataRes["response"]->$tagResp);die;
             $dataRes = $dataRes["response"]->$tagResp->queryUserOttResponse;
             $arrayRespuesta = array();
             if( $dataRes->resultCode == 0 ){
-                //var_dump($dataRes);die;
                 $resultMessage = strval($dataRes->resultMessage);
                 $correlatorId = strval($dataRes->correlatorId);
                 $data = $dataRes->subscriptionList->subscription;
                 for( $i = 1; $i <= count($data)-1; $i++ ){
                     $Respuesta = array();
                     foreach($data[$i] as $datos){
-                        //print($datos->key);print("////");print($datos->value);print("<hr>");
                         $Respuesta[] = array( strval($datos->key) => strval($datos->value));
                     }
                     $arrayRespuesta[] = $Respuesta;
                 }
-                //print_r($arrayRespuesta);die;
+                
                 $arrayResponse = [
                     'resultMessage'=>$resultMessage,
                     'correlatorId'=> $correlatorId,

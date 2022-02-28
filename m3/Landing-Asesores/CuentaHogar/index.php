@@ -42,6 +42,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $respuesta = array();
     if($dataRes["error"] == 0){
+        
         //Tag que envia el servicio
         $tagResp = "ns2rootReadResponse";
         

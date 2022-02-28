@@ -42,7 +42,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $respuesta = array();
     if($dataRes["error"] == 0){
-        //print_r($dataRes);die;
+        
         //Tag que envia el servicio
         $tagResp = "ns2rootModifyResponse";
 
@@ -50,7 +50,6 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $respuesta["tiempo"] = $dataRes["tiempo"];
         if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
             $dataRes = $dataRes["response"]->$tagResp;
-            //print_r($dataRes->ns2modifyResponse);die;
             if( strval($dataRes->ns2modifyResponse->ns2resultMessage) == 0){
                 $respuesta["error"] = 0;
                 $respuesta["response"] = strval($dataRes->ns2modifyResponse->ns2resultMessage);
@@ -59,8 +58,6 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $respuesta["response"] = strval($dataRes->ns2modifyResponse->ns2resultMessage);
             }
         }else{
-            //print_r($dataRes['response']->soapenvFault);die;
-            //print_r($dataRes['response']->soapenvFault->faultstring);die;
             $respuesta["error"] = 1;
             $respuesta["response"] = strval($dataRes['response']->soapenvFault->faultstring);
         }

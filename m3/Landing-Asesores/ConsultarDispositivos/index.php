@@ -41,34 +41,31 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $respuesta = array();
     if($dataRes["error"] == 0){
-        //print_r($dataRes);die;
-        //Tag que envia el servicio
+        
         $tagResp = "Root-Element";
 
         $respuesta["secs"] = $dataRes["secs"];
         $respuesta["tiempo"] = $dataRes["tiempo"];
         if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
             $dataRes = $dataRes["response"]->$tagResp;
-            //print_r($dataRes);die;
-            //print_r($dataRes->queryOttResponse->resultCode);die;
+            
             if( strval($dataRes->queryOttResponse->resultCode) == 0){
                 $dataRes = $dataRes->queryOttResponse;
                 $resultMessage = strval($dataRes->resultMessage);
                 $correlatorId = strval($dataRes->correlatorId);
                 $providerId = strval($dataRes->providerId);
                 $serviceName = strval($dataRes->serviceName);
-                // Array con información:
+                
                 $data = $dataRes->deviceList->device;
                 $arrayRespuesta = array();
                 for( $i = 1; $i <= count($data)-1; $i++ ){
                     $Respuesta = array();
                     foreach($data[$i] as $datos){
-                        //print($datos->key);print("////");print($datos->value);print("<hr>");die;
                         $Respuesta[] = array( strval($datos->key) => strval($datos->value));
                     }
                     $arrayRespuesta[] = $Respuesta;
                 }
-                //print_r($arrayRespuesta);die;
+                
                 $arrayResponse = [
                     'resultMessage'=>$resultMessage,
                     'correlatorId'=> $correlatorId,

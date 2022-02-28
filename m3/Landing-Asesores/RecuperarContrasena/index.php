@@ -41,9 +41,9 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $respuesta = array();
     if($dataRes["error"] == 0){
-        //print_r($dataRes);die;
+        
         //Tag que envia el servicio
-        $tagResp = "Root-Element";
+        $tagResp = "soapenvFault";
 
         $respuesta["secs"] = $dataRes["secs"];
         $respuesta["tiempo"] = $dataRes["tiempo"];
@@ -57,6 +57,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $respuesta["response"] = strval($dataRes->resultMessage);
             }
         }else{
+            print("ERROR");die;
             $respuesta["error"] = 1;
             $respuesta["response"] = strval($dataRes['responseServer']);
         }

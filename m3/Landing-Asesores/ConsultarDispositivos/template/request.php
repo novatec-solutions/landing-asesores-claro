@@ -23,6 +23,10 @@
             <cus:employeeId><?=$data->employeeId?></cus:employeeId>
             <cus:origin><?=$data->origin?></cus:origin>
             <!--Optional:-->
+            <cus:startDate><?=$data->startDate?></cus:startDate>
+            <!--Optional:-->
+            <cus:endDate><?=$data->endDate?></cus:endDate>
+            <!--Optional:-->
             <cus:serviceName><?=$data->serviceName?></cus:serviceName>
             <cus:providerId><?=$data->providerId?></cus:providerId>
             <cus:iccidManager><?=$data->iccidManager?></cus:iccidManager>
