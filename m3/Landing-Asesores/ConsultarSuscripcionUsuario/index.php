@@ -55,7 +55,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $resultMessage = strval($dataRes->resultMessage);
                 $correlatorId = strval($dataRes->correlatorId);
                 $data = $dataRes->subscriptionList->subscription;
-                for( $i = 1; $i <= count($data)-1; $i++ ){
+                for( $i = 0; $i <= count($data)-1; $i++ ){
                     $Respuesta = array();
                     foreach($data[$i] as $datos){
                         $Respuesta[] = array( strval($datos->key) => strval($datos->value));
