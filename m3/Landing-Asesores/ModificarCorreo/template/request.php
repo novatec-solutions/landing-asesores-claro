@@ -15,6 +15,7 @@
             <v11:providerId><?=$data->providerId?></v11:providerId>
             <v11:idNumber><?=$data->idNumber?></v11:idNumber>
             <v11:emailAddress><?=$data->emailAddress?></v11:emailAddress>
+            <v11:paymentType><?=$data->paymentType?></v11:paymentType>
          </v11:modifyRequest>
       </v11:rootModifyRequest>
    </soapenv:Body>

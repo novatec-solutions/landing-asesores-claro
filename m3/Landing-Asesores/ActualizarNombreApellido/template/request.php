@@ -16,6 +16,7 @@
             <v11:idNumber><?=$data->idNumber?></v11:idNumber>
             <v11:firstName><?=$data->firstName?></v11:firstName>
             <v11:lastName><?=$data->lastName?></v11:lastName>
+            <v11:paymentType><?=$data->paymentType?></v11:paymentType>
          </v11:modifyRequest>
       </v11:rootModifyRequest>
    </soapenv:Body>

@@ -66,7 +66,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $respuesta["response"] = $dataRes["responseServer"];
     }
     
-    //var_dump($respuesta);die;
+    var_dump($respuesta);die;
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json'); 
     
 

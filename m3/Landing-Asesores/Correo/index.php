@@ -64,6 +64,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $emailAddress = strval($dataRes->ns2emailAddress);
                 $firstName = strval($dataRes->ns2firstName);
                 $lastName = strval($dataRes->ns2lastName);
+                $paymentType = strval($dataRes->ns2paymentType);
                 $arrayResponse = [
                     'customerId'=>$customerId,
                     'providerId'=> $providerId,
@@ -72,7 +73,8 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                     'operatorUserId'=> $operatorUserId,
                     'emailAddress'=> $emailAddress,
                     'firstName'=> $firstName,
-                    'lastName'=> $lastName
+                    'lastName'=> $lastName,
+                    'paymentType'=> $paymentType
                 ];
                 $respuesta["response"] = $arrayResponse;
                 $respuesta["error"] = 0;
