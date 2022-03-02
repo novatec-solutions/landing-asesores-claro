@@ -68,7 +68,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                     'customerId'=>$customerId,
                     'providerId'=> $providerId,
                     'idNumber'=> $idNumber,
-                    'fixedAccount'=> $fixedAccount,
+                    'fixedAccount'=> $msisdn,
                     'operatorUserId'=> $operatorUserId,
                     'emailAddress'=> $emailAddress,
                     'firstName'=> $firstName,
