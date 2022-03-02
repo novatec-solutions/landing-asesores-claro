@@ -17,8 +17,10 @@ $container['view'] = new \Slim\Views\PhpRenderer(__DIR__.'/template/');
 $container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
 
 //Url del servicio
-$container['urlServicio']="http://172.24.160.161:8600/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";    //Desarrollo
+//Url del servicio
+//$container['urlServicio']="http://172.24.160.161:8600/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";    //Desarrollo
 //$container['urlServicio']="http://172.24.160.161:8600/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";    //Pre Produccion
+$container['urlServicio']="http://172.24.160.135:8080/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";    //Produccion
 
 //Nombre del template Request
 $container['requestTemplate']="request.php"; 
@@ -48,25 +50,31 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
 
         $respuesta["secs"] = $dataRes["secs"];
         $respuesta["tiempo"] = $dataRes["tiempo"];
+        
         if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
             $dataRes = $dataRes["response"]->$tagResp;
+            
             if( strval($dataRes->ns2modifyResponse->ns2resultMessage) == 0){
                 $respuesta["error"] = 0;
-                $respuesta["response"] = strval($dataRes->ns2modifyResponse->ns2resultMessage);
+                $respuesta["response"] = "El correo ha sido cambiado con éxito";
             }else{
                 $respuesta["error"] = 1;
-                $respuesta["response"] = strval($dataRes->ns2modifyResponse->ns2resultMessage);
+                $respuesta["response"] = "strval($dataRes->ns2modifyResponse->ns2resultMessage)";
             }
         }else{
-            $respuesta["error"] = 1;
-            $respuesta["response"] = strval($dataRes['response']->soapenvFault->faultstring);
+            if( isset( $dataRes['response']->soapenvFault->faultcode ) == 'CODE_3'){
+                $respuesta["error"] = 1;
+                $respuesta["response"] = "El correo que intenta actualizar ya se encuentra registrado";
+            }else{
+                $respuesta["error"] = 1;
+                $respuesta["response"] = strval($dataRes['response']->soapenvFault->faultstring);
+            }
         }
     }else {
         $respuesta["error"] = 1;
         $respuesta["response"] = $dataRes["responseServer"];
     }
     
-    //var_dump($respuesta);die;
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json'); 
     
 

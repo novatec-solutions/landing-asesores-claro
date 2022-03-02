@@ -55,6 +55,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $resultMessage = strval($dataRes->resultMessage);
                 $correlatorId = strval($dataRes->correlatorId);
                 $data = $dataRes->subscriptionList->subscription;
+                
                 for( $i = 0; $i <= count($data)-1; $i++ ){
                     $Respuesta = array();
                     foreach($data[$i] as $datos){
@@ -80,10 +81,9 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         }
     }else {
         $respuesta["error"] = 1;
-        $respuesta["response"] = $dataRes["responseServer"];
+        $respuesta["response"] = "No se encontró información";
     }
     
-    //var_dump($respuesta);die;
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json'); 
     
 

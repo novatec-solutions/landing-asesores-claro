@@ -20,6 +20,8 @@
             <cus:invokeMethod><?=$data->invokeMethod?></cus:invokeMethod>
             <cus:correlatorId><?=$data->correlatorId?></cus:correlatorId>
             <cus:countryId><?=$data->countryId?></cus:countryId>
+            <cus:startDate><?=$data->startDate?></cus:startDate>
+            <cus:endDate><?=$data->endDate?></cus:endDate>
             <cus:employeeId><?=$data->employeeId?></cus:employeeId>
             <cus:origin><?=$data->origin?></cus:origin>
             <!--Optional:-->

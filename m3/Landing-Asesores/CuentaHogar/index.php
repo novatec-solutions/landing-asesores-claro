@@ -53,7 +53,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
             $dataRes = $dataRes["response"]->$tagResp;
             if( strval($dataRes->ns2readResponse->ns2resultCode) == 0){
                 $dataRes = $dataRes->ns2readResponse->ns2data;
-                
+
                 $customerId = strval($dataRes->ns2customerId);
                 $providerId = strval($dataRes->ns2providerId);
                 $idNumber = strval($dataRes->ns2idNumber);
@@ -63,6 +63,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $firstName = strval($dataRes->ns2firstName);
                 $lastName = strval($dataRes->ns2lastName);
                 $paymentType = strval($dataRes->ns2paymentType);
+                $msisdn = strval($dataRes->ns2msisdn);
                 $arrayResponse = [
                     'customerId'=>$customerId,
                     'providerId'=> $providerId,
@@ -72,7 +73,8 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                     'emailAddress'=> $emailAddress,
                     'firstName'=> $firstName,
                     'lastName'=> $lastName,
-                    'paymentType' => $paymentType
+                    'paymentType' => $paymentType,
+                    'msisdn' => $msisdn
                 ];
                 $respuesta["response"] = $arrayResponse;
                 $respuesta["error"] = 0;
@@ -86,7 +88,6 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $respuesta["response"] = $dataRes["responseServer"];
     }
     
-    //var_dump($respuesta);die;
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json'); 
     
 
