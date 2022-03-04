@@ -28,7 +28,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $json = json_decode( $request->getBody() );
 
     $data=$json->data;
-    $data->password = md5($data->password);
+    //$data->password = md5($data->password);
 
     $reqJSON = $this->view->fetch($this->requestTemplate, ['data' => $data]);
 
@@ -45,8 +45,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $respuesta = array();
     $respuesta["error"] = 0;
-    $res= json_decode(iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($dataRes["response"])));
-    $respuesta["response"] = $res->estado;
+    $respuesta["response"] = json_decode(iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($dataRes["response"])));
 
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');    
 
