@@ -20,7 +20,7 @@ $container['urlServicio']="http://100.126.0.150:11051/WsPortalUsuariosRest-web/w
 //Nombre del template Request
 $container['requestTemplate']="request.php"; 
 
-$app->map(['PUT'], '/', function (Request $request, Response $response, array $args) {
+$app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
 
     //var_dump( GibberishAES::enc("Contraseña|2022-02-22", "Claro.*2019#123"));
     //die;
