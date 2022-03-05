@@ -41,7 +41,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         
         //$pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
         $pass = openssl_decrypt($json->data->password, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
-        echo $pass;
+        echo trim($pass);
         die;
         $ldapuser  = $json->data->usuario;     
         $ldappass = $pass;  
