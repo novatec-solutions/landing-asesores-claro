@@ -32,7 +32,47 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $json = json_decode( $request->getBody() );
 
     $data=$json->data;
-    //$data->password = md5($data->password);
+
+    $ldaprdn  = 'ECM1795A';     // ldap rdn or dn
+    $ldappass = 'Marcela2021*';  // associated password
+
+    $ldap = [
+        'timeout' =>20,
+        'host' =>'172.24.232.140',
+        'rdn' => 'CLAROCO\\'.$ldaprdn,
+        'pass' => $ldappass
+    ];
+    $host=$ldap["host"];
+    $ldapport=389;
+
+    $ldapconn = ldap_connect($host, $ldapport)  or die("Fallo conexion con LDPA");
+
+    ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+    ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+
+    if ($ldapconn) {
+        // realizando la autenticación
+        $ldapbind = @ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
+        
+        // verificación del enlace
+        if ($ldapbind) {
+            echo "LDAP bind successful...";
+        } else {
+            echo "LDAP bind failed...";
+        }
+    }    
+
+    die;
+
+    $Fecha = date('Y-m-d');
+    $pass = base64_decode($data->password."|2020-03-04");
+    $secure = sha1($Fecha.$pass);
+
+
+
+    $data->password = md5($data->password);
+
+
 
     $reqJSON = $this->view->fetch($this->requestTemplate, ['data' => $data]);
 
@@ -51,7 +91,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $respuesta["error"] = 0;
     $respuesta["response"] = json_decode(iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($dataRes["response"])));
 
-    return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');    
+    return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');     
 
 });
 
