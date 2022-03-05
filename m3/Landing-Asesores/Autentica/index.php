@@ -41,10 +41,9 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $iv =  hex2bin("abcdef9876543210abcdef9876543210");
         $decrypted = openssl_decrypt($json->data->password, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
         $decrypted = trim($decrypted);
-        echo $decrypted;        
-        die;
+        
         $ldapuser  = $json->data->usuario;     
-        $ldappass = $pass;  
+        $ldappass = $decrypted;  
 
         $ldap = [
             'timeout' => 20,
