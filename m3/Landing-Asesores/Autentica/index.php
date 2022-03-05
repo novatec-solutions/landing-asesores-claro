@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
 require_once __DIR__ . '/../../Core/config.php';
-//require_once __DIR__ . '/../../Core/GibberishAES.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -26,20 +25,20 @@ $container['requestTemplate'] = "request.php";
 
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
 
-    //var_dump( GibberishAES::enc("Contraseña|2022-02-22", "Claro.*2019#123"));
-    //die;
-
     $json = json_decode($request->getBody());
 
     $data = $json->data;
 
     $allowUsers = array(
-        'ECM1795A'
+        'ECM1795A',
+        'ECM1710B'
     );
 
     if (in_array($json->data->usuario, $allowUsers)) {
-        $ldapuser  = $json->data->usuario;     // ldap rdn or dn
-        $ldappass = $json->data->password;  // associated password
+
+        $pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
+        $ldapuser  = $json->data->usuario;     
+        $ldappass = $pass;  
 
         $ldap = [
             'timeout' => 20,
