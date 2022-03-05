@@ -15,9 +15,6 @@ $app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/template/');
 
-$key = hex2bin("0123456789abcdef0123456789abcdef");
-$iv =  hex2bin("abcdef9876543210abcdef9876543210");
-
 $container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
 
 //Url del servicio
@@ -38,15 +35,11 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     );
 
     if (in_array($json->data->usuario, $allowUsers)) {
-        
 
         //$pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
         $key = hex2bin("0123456789abcdef0123456789abcdef");
         $iv =  hex2bin("abcdef9876543210abcdef9876543210");
-        
-        // we receive the encrypted string from the post¿
-        $decrypted = openssl_decrypt("JYpWykgGxmbB+pqQHrcSvg==", 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
-        // finally we trim to get our original string
+        $decrypted = openssl_decrypt($json->data->password, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
         $decrypted = trim($decrypted);
         echo $decrypted;        
         die;
@@ -86,24 +79,6 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $respuesta["response"] = "FAILED";
     }
 
-/*
-    $reqJSON = $this->view->fetch($this->requestTemplate, ['data' => $data]);
-
-    $this->curlWigi->URL = $this->urlServicio;
-    $this->curlWigi->POSTFIELDS = $reqJSON;
-
-    $headers[] = "";
-
-    $objSoap = new RunSoap($this->urlServicio, $reqJSON);
-    $objSoap->setIsSoap(false);
-    $objSoap->setHeader($headers);
-    $objSoap->setBaseHeaders(["Content-type: application/json;charset=\"utf-8\""]);
-    $dataRes = $objSoap->execSoapPut();
-
-    $respuesta = array();
-    $respuesta["error"] = 0;
-    $respuesta["response"] = json_decode(iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($dataRes["response"])));
-*/
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });
 
