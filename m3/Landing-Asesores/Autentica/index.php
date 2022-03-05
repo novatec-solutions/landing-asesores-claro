@@ -15,6 +15,9 @@ $app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/template/');
 
+$key = hex2bin("0123456789abcdef0123456789abcdef");
+$iv =  hex2bin("abcdef9876543210abcdef9876543210");
+
 $container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
 
 //Url del servicio
@@ -35,8 +38,11 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     );
 
     if (in_array($json->data->usuario, $allowUsers)) {
-
-        $pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
+        
+        //$pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
+        $pass = openssl_decrypt($json->data->password, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
+        echo $pass;
+        die;
         $ldapuser  = $json->data->usuario;     
         $ldappass = $pass;  
 
