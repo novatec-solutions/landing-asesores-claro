@@ -40,7 +40,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     if (in_array($json->data->usuario, $allowUsers)) {
         
         //$pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
-        $pass = openssl_decrypt($json->data->password, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
+        $pass = openssl_decrypt("JYpWykgGxmbB+pqQHrcSvg==", 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
         echo trim($pass);
         die;
         $ldapuser  = $json->data->usuario;     
