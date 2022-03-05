@@ -41,10 +41,14 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         
 
         //$pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
-        $decrypted = openssl_decrypt("JYpWykgGxmbB+pqQHrcSvg==", 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);        
+        $key = hex2bin("0123456789abcdef0123456789abcdef");
+        $iv =  hex2bin("abcdef9876543210abcdef9876543210");
+        
+        // we receive the encrypted string from the post¿
+        $decrypted = openssl_decrypt("JYpWykgGxmbB+pqQHrcSvg==", 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
         // finally we trim to get our original string
         $decrypted = trim($decrypted);
-        echo $decrypted;
+        echo $decrypted;        
         die;
         $ldapuser  = $json->data->usuario;     
         $ldappass = $pass;  
