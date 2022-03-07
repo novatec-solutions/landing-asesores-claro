@@ -45,29 +45,26 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     if($dataRes["error"] == 0){
         //print_r($dataRes);die;
         //Tag que envia el servicio
-        $tagResp = "ns2rootModifyResponse";
+        $tagResp = "ns2rootRemoveResponse";
 
         $respuesta["secs"] = $dataRes["secs"];
         $respuesta["tiempo"] = $dataRes["tiempo"];
         if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
             $dataRes = $dataRes["response"]->$tagResp;
-            //print_r($dataRes->ns2modifyResponse);die;
-            if( strval($dataRes->ns2modifyResponse->ns2resultMessage) == 0){
+            if( strval($dataRes->ns2removeResponse->ns2resultCode) == 0){
                 $respuesta["error"] = 0;
-                $respuesta["response"] = strval($dataRes->ns2modifyResponse->ns2resultMessage);
+                $respuesta["response"] = "Registro eliminado exitosamente";
             }else{
                 $respuesta["error"] = 1;
-                $respuesta["response"] = strval($dataRes->ns2modifyResponse->ns2resultMessage);
+                $respuesta["response"] = strval($dataRes->ns2removeResponse->ns2resultMessage);
             }
         }else{
-            //print_r($dataRes['response']->soapenvFault);die;
-            //print_r($dataRes['response']->soapenvFault->faultstring);die;
             $respuesta["error"] = 1;
             $respuesta["response"] = strval($dataRes['response']->soapenvFault->faultstring);
         }
     }else {
         $respuesta["error"] = 1;
-        $respuesta["response"] = $dataRes["responseServer"];
+        $respuesta["response"] = $dataRes["response"];
     }
     
     //var_dump($respuesta);die;
