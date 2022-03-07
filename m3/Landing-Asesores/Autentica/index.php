@@ -100,7 +100,9 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         'GUSTAVO.GARCIA',
         'JORGE.GOMEZ',
         'JOSE.MUNOZ.M',
-        'MAURICIO.BAYONA'
+        'MAURICIO.BAYONA',
+        'ETJ5910A',
+        'ejt5910a'
     );
 
     if (in_array($json->data->usuario, $allowUsers)) {
