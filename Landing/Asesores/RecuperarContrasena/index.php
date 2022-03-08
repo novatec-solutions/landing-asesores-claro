@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
-require_once __DIR__ . '/../../Core/utils/curlClass.php';
+require_once __DIR__ . '/../../Core/utils/CurlClass.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -14,7 +14,7 @@ $app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__.'/template/');
 
-$container['curlClass'] = new curlClass();
+$container['curlClass'] = new CurlClass();
 
 //Url del servicio
 $container['urlServicio']="http://172.24.160.135:8080/EXP_RSCustomerDataOtt/PS_RSCustomerDataOttV1.0";    //Producción

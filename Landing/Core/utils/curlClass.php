@@ -3,7 +3,7 @@
 /**
  * Autor: Jeisson Gonzalez
  */
-class curlClass
+class CurlClass
 {
 
     public $URL = "";
