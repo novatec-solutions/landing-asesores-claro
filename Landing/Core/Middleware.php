@@ -1,15 +1,9 @@
 <?php
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 require_once __DIR__.'/utils/Security.php';
 require_once __DIR__.'/utils/Logs.php';
 require_once __DIR__.'/utils/Validations.php';
 require_once __DIR__.'/utils/Language.php';
-
-//require_once __DIR__.'/config.php';
 
 class MiddlewareApp
 {
