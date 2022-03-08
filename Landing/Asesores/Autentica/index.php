@@ -1,12 +1,9 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
 require_once __DIR__ . '/../../Core/utils/CurlClass.php';
+require __DIR__ . '/../../Core/Middleware.php';
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
-use M3\Classes\Soap\RunSoap;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -16,18 +13,14 @@ $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/template/');
 
 $container['curlClass'] = new CurlClass();
-
-//Url del servicio
 $container['urlServicio'] = "http://100.126.0.150:11051/WsPortalUsuariosRest-web/ws/WsPortalUsuariosRest/autentica/";  //Desarrollo
-
-//Nombre del template Request
 $container['requestTemplate'] = "request.php";
+
+$app->add(new MiddlewareApp(dirname(__FILE__), $app->getContainer()));
 
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
 
-    $json = json_decode($request->getBody());
-
-    $data = $json->data;
+    $dataJson = $request->getAttribute('dataJson');
 
     $allowUsers = array(
         'ECM1795A',
@@ -105,15 +98,11 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         'ejt5910a'
     );
 
-    if (in_array($json->data->usuario, $allowUsers)) {
+    if (in_array($dataJson->usuario, $allowUsers)) {
 
-        //$pass = openssl_decrypt($json->data->password, "BF-CBC", "Claro.*2019#123");
-        $key = hex2bin("0123456789abcdef0123456789abcdef");
-        $iv =  hex2bin("abcdef9876543210abcdef9876543210");
-        $decrypted = openssl_decrypt($json->data->password, 'AES-128-CBC', $key, OPENSSL_ZERO_PADDING, $iv);
-        $decrypted = trim($decrypted);
-        
-        $ldapuser  = $json->data->usuario;     
+        $ldapuser  = $dataJson->usuario; 
+
+        $decrypted = CryptoUtils::decrypt($dataJson->password);
         $ldappass = $decrypted;  
 
         $ldap = [
@@ -135,7 +124,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
             $ldapbind = @ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
 
             $respuesta = array();
-            // verificación del enlace
+
             if ($ldapbind) {
                 $respuesta["error"] = 0;
                 $respuesta["response"] = "SUCCESS";
