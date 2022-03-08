@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
-require_once __DIR__ . '/../../Core/config.php';
+require_once __DIR__ . '/../../Core/utils/curlClass.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -14,8 +14,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/template/');
-
-$container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
 
 //Url del servicio
 $container['urlServicio'] = "http://100.126.0.150:11051/WsPortalUsuariosRest-web/ws/WsPortalUsuariosRest/autentica/";  //Desarrollo

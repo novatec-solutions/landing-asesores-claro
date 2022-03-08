@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
-require_once __DIR__ . '/../../Core/config.php';
+require_once __DIR__ . '/../../Core/utils/curlClass.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -14,7 +14,7 @@ $app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__.'/template/');
 
-$container['curlWigi'] = new \wigilabs\curlWigiM3\curlWigi();
+$container['curlClass'] = new curlClass();
 
 //Url del servicio
 //$container['urlServicio']="http://172.24.160.161:8600/EXP_WSCustomeCusID/PS_WSCustomeCusIDV1.0";    //Desarrollo
@@ -32,12 +32,12 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $data]);
 
-    $this->curlWigi->URL=$this->urlServicio;
-    $this->curlWigi->POSTFIELDS=$reqXML;
+    $this->curlClass->URL=$this->urlServicio;
+    $this->curlClass->POSTFIELDS=$reqXML;
     
     $header[]="";
     
-    $dataRes=$this->curlWigi->soap($header,true,true);
+    $dataRes=$this->curlClass->soap($header,true,true);
     
     /************************LOGICA DE RESPONSE***************************/
     

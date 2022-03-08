@@ -1,8 +1,9 @@
 <?php
 
-namespace wigilabs\curlWigiM3Local;
-
-class curlWigi
+/**
+ * Autor: Jeisson Gonzalez
+ */
+class curlClass
 {
 
     public $URL = "";
@@ -24,7 +25,10 @@ class curlWigi
     }
 
 
-    public function soap($headerRequest=array(),$debug=false,$isSoap=true,$userPwd = null){
+    public function soap($headerRequest=array(),$debug=false,$isSoap=true)
+    {
+
+       
 
         if($isSoap){
             $contentType = "text/xml;charset=\"utf-8\"";
@@ -74,12 +78,8 @@ class curlWigi
         curl_setopt($soap_do, CURLOPT_POST,           $this->POST );
         curl_setopt($soap_do, CURLOPT_POSTFIELDS,     $params);
         curl_setopt($soap_do, CURLOPT_HTTPHEADER,     $this->HEADERS);
-        if(isset($userPwd) && $userPwd != null) {
-            curl_setopt($soap_do, CURLOPT_USERPWD, $userPwd);
-            curl_setopt($soap_do, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        }
         $res = curl_exec($soap_do);
-        var_dump($res);
+
 
         $resServer = $res;
 
@@ -95,6 +95,11 @@ class curlWigi
         $response["tiempo"]=$tiempo;
 
         if(!$res) {
+            if ($debug) {
+                $res = 'Error: ' . curl_error($soap_do);
+                $response["Exception"]=$res;
+            }
+            
             curl_close($soap_do);
             $response["response"] = $this->txt_error." - RED";
             $response["error"] = 1;
@@ -227,7 +232,8 @@ class curlWigi
         }
     }
 
-    function timeToSeconds($time){
+    function timeToSeconds($time)
+    {
          $timeExploded = explode(':', $time);
          if (isset($timeExploded[2])) {
              return $timeExploded[0] * 3600 + $timeExploded[1] * 60 + $timeExploded[2];

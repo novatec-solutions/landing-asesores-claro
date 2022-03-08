@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'wigilabs\\curlWigiM3' => array($vendorDir . '/jsngonzalez/curl-wigi-m3/src'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
 );

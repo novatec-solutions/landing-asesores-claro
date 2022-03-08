@@ -86,13 +86,6 @@ class ComposerStaticInitd850a35bfc910b6a12f0117e267c7c8f
     );
 
     public static $prefixesPsr0 = array (
-        'w' => 
-        array (
-            'wigilabs\\curlWigiM3' => 
-            array (
-                0 => __DIR__ . '/..' . '/jsngonzalez/curl-wigi-m3/src',
-            ),
-        ),
         'P' => 
         array (
             'Pimple' => 

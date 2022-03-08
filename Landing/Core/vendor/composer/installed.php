@@ -28,15 +28,6 @@
             'reference' => '79cbf1341c22ec75643d841642dd5d6acd83bdb8',
             'dev_requirement' => false,
         ),
-        'jsngonzalez/curl-wigi-m3' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../jsngonzalez/curl-wigi-m3',
-            'aliases' => array(),
-            'reference' => 'master',
-            'dev_requirement' => false,
-        ),
         'nikic/fast-route' => array(
             'pretty_version' => 'v1.3.0',
             'version' => '1.3.0.0',
