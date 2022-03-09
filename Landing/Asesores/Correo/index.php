@@ -43,7 +43,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
 
             $respuesta["secs"] = $dataRes["secs"];
             $respuesta["tiempo"] = $dataRes["tiempo"];
-            print_r($dataRes["response"]);die;
+            
             if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
                 $dataRes = $dataRes["response"]->$tagResp;
                 

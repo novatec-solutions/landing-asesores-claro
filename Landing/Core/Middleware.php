@@ -20,7 +20,7 @@ class MiddlewareApp
         $reqBody = json_decode($request->getBody());
 
         $decrypted = CryptoUtils::decrypt($reqBody->data);
-
+        
         /**
          * Security */   
         $headers = $request->getHeaders();
