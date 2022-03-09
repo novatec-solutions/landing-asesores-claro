@@ -23,7 +23,7 @@ $app->add(new MiddlewareApp(dirname(__FILE__), $app->getContainer()));
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
     
     $dataJson = $request->getAttribute('dataJson');
-    
+    $respuesta = array();
     if( isset($dataJson->msisdn) && isset($dataJson->state) ){
 
         $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
@@ -37,7 +37,6 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         
         /************************LOGICA DE RESPONSE***************************/
         
-        $respuesta = array();
         if($dataRes["error"] == 0){
             
             //Tag que envia el servicio
