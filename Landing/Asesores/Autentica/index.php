@@ -23,6 +23,9 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $dataJson = $request->getAttribute('dataJson');
 
     $allowUsers = array(
+        /**
+         * El usuario de red se debe parametrizar en mayúscula 
+         */
         'ECM1795A',
         'ECM1710B',
         'CAROLINA.DIAZ.C',
@@ -95,7 +98,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         'JOSE.MUNOZ.M',
         'MAURICIO.BAYONA',
         'ETJ5910A',
-        'ejt5910a'
+        'EJT5910A'
     );
 
     if (in_array($dataJson->usuario, $allowUsers)) {
@@ -137,6 +140,11 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $respuesta["error"] = 2;
         $respuesta["response"] = "FAILED";
     }
+
+    /**
+     * $respuesta["error"] = 1 --> Credenciales inválidas;
+     * $respuesta["error"] = 2 --> Usuario no permitido;
+     */
 
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });
