@@ -1,7 +1,5 @@
 <?php
 
-
-
 class CryptoUtils{
 
     public static function decrypt($encrypt_data){

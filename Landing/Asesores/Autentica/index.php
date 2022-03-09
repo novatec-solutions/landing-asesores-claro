@@ -1,17 +1,13 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-
 require __DIR__ . '/../../Core/vendor/autoload.php';
-require_once __DIR__ . '/../../Core/utils/CurlClass.php';
 require __DIR__ . '/../../Core/Middleware.php';
+require_once __DIR__ . '/../../Core/utils/CurlClass.php';
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-// Se crea la app
+/* Se crea la app */
 $app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/template/');

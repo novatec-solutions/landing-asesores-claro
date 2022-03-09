@@ -27,9 +27,6 @@ class CurlClass
 
     public function soap($headerRequest=array(),$debug=false,$isSoap=true)
     {
-
-       
-
         if($isSoap){
             $contentType = "text/xml;charset=\"utf-8\"";
             $accept = "text/xml";
@@ -63,9 +60,6 @@ class CurlClass
             return $response;
         }
 
-
-        //return $this->HEADERS;
-
         $starttime = microtime(true);
 
         $soap_do = curl_init();
@@ -80,10 +74,7 @@ class CurlClass
         curl_setopt($soap_do, CURLOPT_HTTPHEADER,     $this->HEADERS);
         $res = curl_exec($soap_do);
 
-
         $resServer = $res;
-
-        //return $res;
         
         $diff = microtime(true) - $starttime;
         $sec = intval($diff);
@@ -119,7 +110,6 @@ class CurlClass
             $res = str_replace("]]>", "", $res);
         }
 
-
         if(!$isSoap){
 
             $r = json_decode($res);
@@ -134,7 +124,6 @@ class CurlClass
             
         }
 
-
         try {
             libxml_use_internal_errors(true);
             $xml = new \SimpleXMLElement($res);
@@ -144,12 +133,6 @@ class CurlClass
             $response["error"] = 1;
             return $response;
         }
-
-        //funciona para ver el error del xml
-        /*$response["response"] = $xml;
-        $response["error"] = 1;
-        return $response;*/
-
 
         if(isset($xml->SBody->ns0Fault)){
             
@@ -199,9 +182,7 @@ class CurlClass
             $response["response"] = $temp["faultstring"];
             $response["error"] = 1;
             return $response;
-
         }
-
 
         if(isset($xml->soapenvBody)){
             $body = $xml->soapenvBody;
@@ -291,7 +272,6 @@ class CurlClass
         }
     }
 
-
     function simple_post($url,$data){
         $soap_do = curl_init();
         curl_setopt($soap_do, CURLOPT_URL,$url);
@@ -302,7 +282,6 @@ class CurlClass
         curl_setopt($soap_do, CURLOPT_SSL_VERIFYHOST, $this->SSL_VERIFYHOST);
         curl_setopt($soap_do, CURLOPT_POST,           $this->POST );
         curl_setopt($soap_do, CURLOPT_POSTFIELDS,     json_encode($data));
-        //curl_setopt($soap_do, CURLOPT_HTTPHEADER,     $this->HEADERS);
         curl_setopt($soap_do, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         $res = curl_exec($soap_do);
 
@@ -344,7 +323,6 @@ class CurlClass
 
        function return_data($data){
 
-        //return $resJSON;
         header('Content-Type: application/json');
         echo json_encode($data);
         exit;
