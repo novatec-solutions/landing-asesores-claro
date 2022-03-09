@@ -3,6 +3,9 @@ require __DIR__ . '/../../Core/vendor/autoload.php';
 require_once __DIR__ . '/../../Core/utils/CurlClass.php';
 require __DIR__ . '/../../Core/Middleware.php';
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -106,45 +109,50 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         $ldapuser  = $dataJson->usuario; 
 
         $decrypted = CryptoUtils::decrypt($dataJson->password);
-        $ldappass = $decrypted;  
+        $ldappass = trim($decrypted); 
 
-        $ldap = [
-            'timeout' => 20,
-            'host' => '172.24.232.140',
-            'rdn' => 'CLAROCO\\' . $ldapuser,
-            'pass' => $ldappass
-        ];
-        $host = $ldap["host"];
-        $ldapport = 389;
+        if(empty($ldappass)){
+            /* Password vacio */
+            $respuesta["error"] = 3;
+            $respuesta["response"] = "FAILED";
+        }else{
 
-        $ldapconn = ldap_connect($host, $ldapport)  or die("Fallo conexion con LDPA");
+            $ldap = [
+                'timeout' => 20,
+                'host' => '172.24.232.140',
+                'rdn' => 'CLAROCO\\' . $ldapuser,
+                'pass' => $ldappass
+            ];
+            $host = $ldap["host"];
+            $ldapport = 389;
 
-        ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+            $ldapconn = ldap_connect($host, $ldapport)  or die("Fallo conexion con LDPA");
 
-        if ($ldapconn) {
-            // realizando la autenticación
-            $ldapbind = @ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
+            ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+            ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-            $respuesta = array();
+            if ($ldapconn) {
 
-            if ($ldapbind) {
-                $respuesta["error"] = 0;
-                $respuesta["response"] = "SUCCESS";
-            } else {
-                $respuesta["error"] = 1;
-                $respuesta["response"] = "FAILED";
+                /* Realiza la autenticacion */
+                $ldapbind = @ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
+
+                $respuesta = array();
+
+                if ($ldapbind) {
+                    $respuesta["error"] = 0;
+                    $respuesta["response"] = "SUCCESS";
+                } else {
+                    /* Credenciales inválidas */
+                    $respuesta["error"] = 1;
+                    $respuesta["response"] = "FAILED";
+                }
             }
         }
     } else{
+         /* Usuario no permitido */
         $respuesta["error"] = 2;
         $respuesta["response"] = "FAILED";
     }
-
-    /**
-     * $respuesta["error"] = 1 --> Credenciales inválidas;
-     * $respuesta["error"] = 2 --> Usuario no permitido;
-     */
 
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });
