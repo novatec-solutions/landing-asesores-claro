@@ -1,10 +1,7 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
+require __DIR__ . '/../../Core/Middleware.php';
 require_once __DIR__ . '/../../Core/utils/CurlClass.php';
-
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -22,73 +19,78 @@ $container['urlServicio']="http://172.24.160.135:8080/EXP_RSCustomerDataOtt/PS_R
 //Nombre del template Request
 $container['requestTemplate']="request.php"; 
 
+$app->add(new MiddlewareApp(dirname(__FILE__), $app->getContainer()));
+
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
     
-    //$headers = $request->getHeaders();
-    $json = json_decode( $request->getBody() );
-    $data=$json->data;
-    
-    $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $data]);
-
-    $this->curlClass->URL=$this->urlServicio;
-    $this->curlClass->POSTFIELDS=$reqXML;
-    
-    $header[]="";
-    
-    $dataRes=$this->curlClass->soap($header,true,true);
-    
-    /************************LOGICA DE RESPONSE***************************/
-    
+    $dataJson = $request->getAttribute('dataJson');
     $respuesta = array();
-    if($dataRes["error"] == 0){
-        
-        $tagResp = "Root-Element";
+    if( isset($dataJson->invokeMethod) && isset($dataJson->employeeId) && isset($dataJson->value) ){
 
-        $respuesta["secs"] = $dataRes["secs"];
-        $respuesta["tiempo"] = $dataRes["tiempo"];
-        if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
-            $dataRes = $dataRes["response"]->$tagResp;
+        $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
+
+        $this->curlClass->URL=$this->urlServicio;
+        $this->curlClass->POSTFIELDS=$reqXML;
+        
+        $header[]="";
+        
+        $dataRes=$this->curlClass->soap($header,true,true);
+        
+        /************************LOGICA DE RESPONSE***************************/
+        
+        $respuesta = array();
+        if($dataRes["error"] == 0){
             
-            if( strval($dataRes->queryOttResponse->resultCode) == 0){
-                $dataRes = $dataRes->queryOttResponse;
-                $resultMessage = strval($dataRes->resultMessage);
-                $correlatorId = strval($dataRes->correlatorId);
-                $providerId = strval($dataRes->providerId);
-                $serviceName = strval($dataRes->serviceName);
+            $tagResp = "Root-Element";
+
+            $respuesta["secs"] = $dataRes["secs"];
+            $respuesta["tiempo"] = $dataRes["tiempo"];
+            if(isset($dataRes["response"],$dataRes["response"]->$tagResp)){
+                $dataRes = $dataRes["response"]->$tagResp;
                 
-                $data = $dataRes->deviceList->device;
-                $arrayRespuesta = array();
-                for( $i = 0; $i <= count($data)-1; $i++ ){
-                    $Respuesta = array();
-                    foreach($data[$i] as $datos){
-                        $Respuesta[] = array( strval($datos->key) => strval($datos->value));
+                if( strval($dataRes->queryOttResponse->resultCode) == 0){
+                    $dataRes = $dataRes->queryOttResponse;
+                    $resultMessage = strval($dataRes->resultMessage);
+                    $correlatorId = strval($dataRes->correlatorId);
+                    $providerId = strval($dataRes->providerId);
+                    $serviceName = strval($dataRes->serviceName);
+                    
+                    $data = $dataRes->deviceList->device;
+                    $arrayRespuesta = array();
+                    for( $i = 0; $i <= count($data)-1; $i++ ){
+                        $Respuesta = array();
+                        foreach($data[$i] as $datos){
+                            $Respuesta[] = array( strval($datos->key) => strval($datos->value));
+                        }
+                        $arrayRespuesta[] = $Respuesta;
                     }
-                    $arrayRespuesta[] = $Respuesta;
+                    
+                    $arrayResponse = [
+                        'resultMessage'=>$resultMessage,
+                        'correlatorId'=> $correlatorId,
+                        'providerId'=> $providerId,
+                        'serviceName'=> $serviceName,
+                        "Dispositivos"=>$arrayRespuesta
+                    ];
+                    $respuesta["response"] = $arrayResponse;
+                    $respuesta["error"] = 0;
+                }else{
+                    $respuesta["error"] = 1;
+                    $respuesta["response"] = "No es posible acceder por el momento";
                 }
-                
-                $arrayResponse = [
-                    'resultMessage'=>$resultMessage,
-                    'correlatorId'=> $correlatorId,
-                    'providerId'=> $providerId,
-                    'serviceName'=> $serviceName,
-                    "Dispositivos"=>$arrayRespuesta
-                ];
-                $respuesta["response"] = $arrayResponse;
-                $respuesta["error"] = 0;
             }else{
                 $respuesta["error"] = 1;
-                $respuesta["response"] = "No es posible acceder por el momento";
+                $respuesta["response"] = "Error al consultar";
             }
-        }else{
+        }else {
             $respuesta["error"] = 1;
-            $respuesta["response"] = "Error al consultar";
+            $respuesta["response"] = "Datos no válidos";
         }
-    }else {
+    }else{
         $respuesta["error"] = 1;
-        $respuesta["response"] = "Datos no válidos";
+        $respuesta["response"] = "Error en data. Favor validar";
     }
-    
-    //var_dump($respuesta);die;
+
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json'); 
     
 
