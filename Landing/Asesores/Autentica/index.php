@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../../Core/vendor/autoload.php';
-require_once __DIR__ . '/../../Core/utils/CurlClass.php';
+require __DIR__ . '/../../Core/utils/CurlClass.php';
 require __DIR__ . '/../../Core/Middleware.php';
 
 
