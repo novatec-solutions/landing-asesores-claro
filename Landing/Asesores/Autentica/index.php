@@ -98,7 +98,22 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
         'JOSE.MUNOZ.M',
         'MAURICIO.BAYONA',
         'ETJ5910A',
-        'EJT5910A'
+        'EJT5910A',
+        'ICO2559B',
+        'ICL3811A',
+        'ICF2583A',
+        'ICO2227A',
+        'D3971606',
+        'ICF8986C',
+        'EIQ5485A',
+        'ICF1710B',
+        'ICM6221B',
+        'ECM0863G',
+        'ICM8602A',
+        'ECM2120J',
+        'ICO1307D',
+        'ICM7072A',
+        'ECM4004B'
     );
 
     if (in_array($dataJson->usuario, $allowUsers)) {
