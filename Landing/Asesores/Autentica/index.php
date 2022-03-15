@@ -35,12 +35,22 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $this->curlClass->URL=$url;
     $this->curlClass->POSTFIELDS=$reqJSON;
 
-    $dataRes=$this->curlClass->simple_put($url, ($reqJSON));
+    $dataRes=$this->curlClass->simple_put($url, json_decode($reqJSON));
+    $dataRes= json_decode($dataRes);
 
     $respuesta = array();
+    
+    if( isset($dataRes->token_session) && $dataRes->estado == 'OK_SESSION' ){
 
-    $respuesta["error"] = '0';
-    $respuesta["response"] = json_decode($dataRes);
+        $respuesta["error"] = 0;
+        $respuesta["response"] = $dataRes;
+        
+    }else{
+
+        $respuesta["error"] = '1';
+        $respuesta["response"] = $dataRes->estado;
+
+    }
     
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });
