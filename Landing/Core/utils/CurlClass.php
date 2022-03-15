@@ -337,7 +337,7 @@ class CurlClass
         curl_setopt($soap_do, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($soap_do, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($soap_do, CURLOPT_CUSTOMREQUEST, "PUT");
-        curl_setopt($soap_do, CURLOPT_POSTFIELDS,    ($data));
+        curl_setopt($soap_do, CURLOPT_POSTFIELDS,  json_encode($data));
         curl_setopt($soap_do, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         $res = curl_exec($soap_do);
 
