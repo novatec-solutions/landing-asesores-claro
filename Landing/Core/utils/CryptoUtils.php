@@ -14,4 +14,20 @@ class CryptoUtils{
         return $decrypted;
     }
 
+    public static function encryptMD5($password){
+        $secret = "Claro.*2019#123";
+        $key = md5(mb_convert_encoding($secret, "UTF-8"), true);  
+        $key = str_pad($key, 24, "\0");   
+
+        $cipher = new \phpseclib3\Crypt\TripleDES('ecb');
+        $cipher->setKey($key);
+        $hoy = date("Y-m-d");
+        //var_dump($hoy);die;
+        $message = $password.'|'.$hoy;
+        //$message = 'Marcela2021*|2022-03-10';
+        $cryptText = $cipher->encrypt($message);
+        $cryptText = base64_encode($cryptText);
+        return $cryptText;
+    }
+
 }
