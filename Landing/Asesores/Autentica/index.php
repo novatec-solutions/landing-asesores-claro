@@ -21,27 +21,26 @@ $app->add(new MiddlewareApp(dirname(__FILE__), $app->getContainer()));
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
 
     $dataJson = $request->getAttribute('dataJson');
-    //var_dump($dataJson);die;
     $ldapuser  = $dataJson->usuario; 
     
-    //$decrypted = CryptoUtils::decrypt($dataJson->password);
-    //$ldappass = trim($decrypted);
-
-    $decryptedPassword = CryptoUtils::encryptMD5($dataJson->password);
-    $decryptedPassword = trim($decryptedPassword);
-    var_dump($decryptedPassword);die;
-
-    //ingresar parámetro en array   --  Yddi0i2NaTiJGYY8a3yyuNbIEEgrufFW
-
-    $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
-
-    $this->curlClass->URL=$this->urlServicio;
-    $this->curlClass->POSTFIELDS=$reqXML;
+    $encryptPassword = CryptoUtils::encryptMD5($dataJson->password);
+    $encryptPassword = trim($encryptPassword);
     
-    $header[]="";
-    
-    $dataRes=$this->curlClass->soap($header,true,true);
-    var_dump($dataRes);die;
+    $dataJson->password = $encryptPassword;
+
+    $reqJSON = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
+
+    $url = $this->urlServicio;
+
+    $this->curlClass->URL=$url;
+    $this->curlClass->POSTFIELDS=$reqJSON;
+
+    $dataRes=$this->curlClass->simple_put($url, ($reqJSON));
+
+    $respuesta = array();
+
+    $respuesta["error"] = '0';
+    $respuesta["response"] = json_decode($dataRes);
     
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });

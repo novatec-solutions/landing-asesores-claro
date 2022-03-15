@@ -9,9 +9,14 @@ class ComposerStaticInitd850a35bfc910b6a12f0117e267c7c8f
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'b7bf1465e14ecc3a1268731334db5608' => __DIR__ . '/..' . '/tebru/assert/src/assert.php',
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'p' => 
+        array (
+            'phpseclib3\\' => 11,
+        ),
         'T' => 
         array (
             'Tebru\\Test\\' => 11,
@@ -27,6 +32,7 @@ class ComposerStaticInitd850a35bfc910b6a12f0117e267c7c8f
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'ParagonIE\\ConstantTime\\' => 23,
         ),
         'M' => 
         array (
@@ -43,6 +49,10 @@ class ComposerStaticInitd850a35bfc910b6a12f0117e267c7c8f
     );
 
     public static $prefixDirsPsr4 = array (
+        'phpseclib3\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
         'Tebru\\Test\\' => 
         array (
             0 => __DIR__ . '/..' . '/tebru/assert/tests',
@@ -71,9 +81,13 @@ class ComposerStaticInitd850a35bfc910b6a12f0117e267c7c8f
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'ParagonIE\\ConstantTime\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
+        ),
         'M3\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/..',
+            0 => __DIR__ . '/../..' . '/../../M3',
         ),
         'Interop\\Container\\' => 
         array (

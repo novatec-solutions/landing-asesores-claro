@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'phpseclib3\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Tebru\\Test\\' => array($vendorDir . '/tebru/assert/tests'),
     'Tebru\\AesEncryption\\Test\\' => array($vendorDir . '/tebru/aes-encryption/tests'),
     'Tebru\\AesEncryption\\' => array($vendorDir . '/tebru/aes-encryption/src'),
@@ -13,7 +14,8 @@ return array(
     'Slim\\' => array($vendorDir . '/slim/slim/Slim'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
-    'M3\\' => array($baseDir . '/..'),
+    'ParagonIE\\ConstantTime\\' => array($vendorDir . '/paragonie/constant_time_encoding/src'),
+    'M3\\' => array($baseDir . '/../../M3'),
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
 );
