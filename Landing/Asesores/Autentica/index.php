@@ -62,7 +62,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                  $respuesta = array();
                  if ($ldapbind) {
                     $respuesta["error"] = 0;
-                    $respuesta["response"] = "SUCCESS";
+                    $respuesta["response"]["estado"] = "OK_SESSION";
                 } else {
                     /* Credenciales inválidas */
                     $respuesta["error"] = 1;
