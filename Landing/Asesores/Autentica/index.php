@@ -32,10 +32,11 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
 
     if (in_array($dataJson->usuario, $allowUsers)) {
         $ldapuser  = $dataJson->usuario; 
+        $ldappass  = $dataJson->password;
     
-        $decrypted = CryptoUtils::decrypt($dataJson->password);
-        $ldappass = trim($decrypted); 
-        
+        //$decrypted = CryptoUtils::decrypt($dataJson->password);
+        //$ldappass = trim($decrypted); 
+
         if(empty($ldappass)){
             /* Password vacio */
             $respuesta["error"] = 3;
