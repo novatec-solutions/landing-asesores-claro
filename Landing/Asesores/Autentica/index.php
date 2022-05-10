@@ -27,7 +27,8 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
          * El usuario de red se debe parametrizar en mayúscula 
          */
         'ECM1795A',
-        'ECM1710B'
+        'ECM1710B',
+        'EJT5910A'
     );
 
     if (in_array($dataJson->usuario, $allowUsers)) {
