@@ -21,37 +21,63 @@ $app->add(new MiddlewareApp(dirname(__FILE__), $app->getContainer()));
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
 
     $dataJson = $request->getAttribute('dataJson');
-    $ldapuser  = $dataJson->usuario; 
+
+    $allowUsers = array(
+        /**
+         * El usuario de red se debe parametrizar en mayúscula 
+         */
+        'ECM1795A',
+        'ECM1710B',
+        'EJT5910A'
+    );
+
+    if (in_array($dataJson->usuario, $allowUsers)) {
+        $ldapuser  = $dataJson->usuario; 
+        $ldappass  = $dataJson->password;
     
-    $encryptPassword = CryptoUtils::encryptMD5($dataJson->password);
-    $encryptPassword = trim($encryptPassword);
-    
-    $dataJson->password = $encryptPassword;
+        //$decrypted = CryptoUtils::decrypt($dataJson->password);
+        //$ldappass = trim($decrypted); 
 
-    $reqJSON = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
+        if(empty($ldappass)){
+            /* Password vacio */
+            $respuesta["error"] = 3;
+            $respuesta["response"] = "FAILED";
+        }else{
+            $ldap = [
+                'timeout' => 20,
+                'host' => '172.24.232.140',
+                'rdn' => 'CLAROCO\\' . $ldapuser,
+                'pass' => $ldappass
+            ];
+            $host = $ldap["host"];
+            $ldapport = 389;
 
-    $url = $this->urlServicio;
+            $ldapconn = ldap_connect($host, $ldapport)  or die("Fallo conexion con LDPA");
+            
+            ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+            ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-    $this->curlClass->URL=$url;
-    $this->curlClass->POSTFIELDS=$reqJSON;
-
-    $dataRes=$this->curlClass->simple_put($url, json_decode($reqJSON));
-    $dataRes= json_decode($dataRes);
-
-    $respuesta = array();
-    
-    if( isset($dataRes->token_session) && $dataRes->estado == 'OK_SESSION' ){
-
-        $respuesta["error"] = 0;
-        $respuesta["response"] = $dataRes;
-        
-    }else{
-
-        $respuesta["error"] = '1';
-        $respuesta["response"] = $dataRes->estado;
-
+            if ($ldapconn) {
+                 /* Realiza la autenticacion */
+                 $ldapbind = @ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
+                 $respuesta = array();
+                 if ($ldapbind) {
+                    $respuesta["error"] = 0;
+                    $respuesta["response"]["estado"] = "OK_SESSION";
+                    $respuesta["response"]["usuario"]["usuario"] = $dataJson->usuario;
+                    $respuesta["response"]["usuario"]["estado"] = "A";
+                } else {
+                    /* Credenciales inválidas */
+                    $respuesta["error"] = 1;
+                    $respuesta["response"] = "FAILED";
+                }
+            }
+        }
+    } else{
+         /* Usuario no permitido */
+        $respuesta["error"] = 2;
+        $respuesta["response"] = "FAILED";
     }
-    
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });
 
