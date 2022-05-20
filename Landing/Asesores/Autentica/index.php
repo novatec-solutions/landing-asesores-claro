@@ -21,37 +21,151 @@ $app->add(new MiddlewareApp(dirname(__FILE__), $app->getContainer()));
 $app->map(['POST'], '/', function (Request $request, Response $response, array $args) {
 
     $dataJson = $request->getAttribute('dataJson');
-    $ldapuser  = $dataJson->usuario; 
+
+    $allowUsers = array(
+        /**
+         * El usuario de red se debe parametrizar en mayúscula 
+         */
+        'ECM1795A',
+        'ECM1710B',
+        'EJT5910A',
+        'ICO8810A',
+        'ICL8730A',
+        'ICO2749B',
+        'E2969341',
+        'ICM3056A',
+        'EYB3987A',
+        'EMI6245A',
+        'ETN3011A',
+        'ECM1302A',
+        'GABRIEL.CALDERON',
+        'ALVARO.ROBERTO',
+        'ALEXANDER.FUQUEN',
+        'JOHN.POVEDA',
+        'JOHN.GUAUQUE',
+        'ERIK.ROJAS.EXT',
+        'CAROL.SUAREZ',
+        'DIANA.FARFANP',
+        'CAMILOA.BULLAL',
+        'YENITH.SANCHEZG',
+        'JONATHAN.CORTEST',
+        'AIDA.QUINTERO',
+        'CRISTIAN.VIVASA',
+        'JULY.ENRIQUEZ',
+        'LUIS.DEVIA',
+        'ALVARO.CONTRERAS',
+        'DANIEL.TRUJILLOA',
+        'FABIAN.LEONC',
+        'GABRIELA.ARIAS',
+        'HUGO.ROMERO',
+        'RODRIGO.MARQUEZ',
+        'MIGUEL.CASTANEDAA',
+        'HUGO.ROMERO',
+        'HAROLD.LOAIZA.EXT',
+        'PABLO.MARTINEZM.EXT',
+        'OSCAR.JIMENEZ',
+        'YURI.MARTIN',
+        'LIBARDO.ROBLES',
+        'OSCAR.JIMENEZ',
+        'DIEGO.CORRALES',
+        'EDUARDE.TRUJILLOR',
+        'GLADYS.HIGUITA',
+        'FERNANDO.MORENOR',
+        'SANDRA.VARGAS.P',
+        'JAVIER.BARRIOS',
+        'MIGUEL.GONZALEZS',
+        'JEFFERSON.RAMIREZ.EXT',
+        'KATHERINE.GALINDOS',
+        'OSCAR.VALLEJO',
+        'NIDIA.SARMIENTO',
+        'JOSE.LUBIN',
+        'DIEGO.BETANCUR',
+        'JOHN.TAFUR',
+        'DELIA.TORRES',
+        'ECM5167J',
+        'LILI.BLANCOS.EXT',
+        'KAREN.ARGUELLO.EXT',
+        'CARLOS.MORENO',
+        'AJUSTESRESIDENCIAL',
+        'YERSY.QUINONEZ',
+        'JOHAN.LOPEZ',
+        'ALEXANDER.DELGADO',
+        'HERNANDO.OSPINA',
+        'MIGUEL.CARABALI',
+        'GUSTAVO.TORRES.G',
+        'GINA.ZULETA',
+        'GUSTAVO.GARCIA',
+        'JORGE.GOMEZ',
+        'JOSE.MUNOZ.M',
+        'MAURICIO.BAYONA',
+        'ICF1710B',
+        'ICM6221B',
+        'ECM0863G',
+        'ICM8602A',
+        'ECM2120J',
+        'ICO1307D',
+        'ICM7072A',
+        'ECM4004B',
+        'JUAN.SIERRA',
+        'ICF3038A',
+        'LUZ.MORALES',
+        'DORA.ROA',
+        'ANDRES.HERRERA',
+        'ICM5223A',
+        'JUAN.LOPEZ.P',
+        'ICO1147A',
+        'E1840468',
+        'ECM1710B',
+        'EJT5910A'
+    );
+
+    if (in_array($dataJson->usuario, $allowUsers)) {
+        $ldapuser  = $dataJson->usuario; 
+        $ldappass  = $dataJson->password;
     
-    $encryptPassword = CryptoUtils::encryptMD5($dataJson->password);
-    $encryptPassword = trim($encryptPassword);
-    
-    $dataJson->password = $encryptPassword;
+        //$decrypted = CryptoUtils::decrypt($dataJson->password);
+        //$ldappass = trim($decrypted); 
 
-    $reqJSON = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
+        if(empty($ldappass)){
+            /* Password vacio */
+            $respuesta["error"] = 3;
+            $respuesta["response"] = "FAILED";
+        }else{
+            $ldap = [
+                'timeout' => 20,
+                'host' => '172.24.232.140',
+                'rdn' => 'CLAROCO\\' . $ldapuser,
+                'pass' => $ldappass
+            ];
+            $host = $ldap["host"];
+            $ldapport = 389;
 
-    $url = $this->urlServicio;
+            $ldapconn = ldap_connect($host, $ldapport)  or die("Fallo conexion con LDPA");
+            
+            ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+            ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-    $this->curlClass->URL=$url;
-    $this->curlClass->POSTFIELDS=$reqJSON;
-
-    $dataRes=$this->curlClass->simple_put($url, json_decode($reqJSON));
-    $dataRes= json_decode($dataRes);
-
-    $respuesta = array();
-    
-    if( isset($dataRes->token_session) && $dataRes->estado == 'OK_SESSION' ){
-
-        $respuesta["error"] = 0;
-        $respuesta["response"] = $dataRes;
-        
-    }else{
-
-        $respuesta["error"] = '1';
-        $respuesta["response"] = $dataRes->estado;
-
+            if ($ldapconn) {
+                 /* Realiza la autenticacion */
+                 $ldapbind = @ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
+                 $respuesta = array();
+                 if ($ldapbind) {
+                    $respuesta["error"] = 0;
+                    $respuesta["response"]["estado"] = "OK_SESSION";
+                    $respuesta["response"]["usuario"]["usuario"] = $dataJson->usuario;
+                    $respuesta["response"]["usuario"]["estado"] = "A";
+                } else {
+                    /* Credenciales inválidas */
+                    $respuesta["error"] = 1;
+                    $respuesta["response"] = "FAILED";
+                }
+            }
+        }
+    } else{
+         /* Usuario no permitido */
+        $respuesta["error"] = 2;
+        $respuesta["response"] = "FAILED";
     }
-    
     return $response->withJson($respuesta)->withHeader('Content-type', 'application/json');
 });
 
