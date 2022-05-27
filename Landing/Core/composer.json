@@ -1,0 +1,13 @@
+{
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/php-view": "^2.2",
+        "tebru/aes-encryption": "^0.3.0",
+        "phpseclib/phpseclib": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "M3\\": "../../M3"
+        }
+    }
+}
