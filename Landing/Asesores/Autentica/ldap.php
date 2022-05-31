@@ -3,8 +3,8 @@
     $ldap = [
         'timeout' => 20,
         'host' => '172.24.232.140',
-        'rdn' => 'CLAROCO\\' . 'ICF6344A',
-        'pass' => 'Samantha2022.'
+        'rdn' => 'CLAROCO\\' . 'EHT7492A',
+        'pass' => 'Claro2022*'
     ];
     $host = $ldap["host"];
     $ldapport = 389;
