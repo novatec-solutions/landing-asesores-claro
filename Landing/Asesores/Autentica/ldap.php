@@ -1,10 +1,12 @@
 <?php
+    $fp = readfile("php://stdin");
+    $args = explode(" ", $fp);
 
     $ldap = [
         'timeout' => 20,
         'host' => '172.24.232.140',
-        'rdn' => 'CLAROCO\\' . 'EHT7492A',
-        'pass' => 'Claro2022*'
+        'rdn' => 'CLAROCO\\' . $args[0],
+        'pass' => $args[1]
     ];
     $host = $ldap["host"];
     $ldapport = 389;
