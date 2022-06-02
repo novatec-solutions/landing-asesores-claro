@@ -26,14 +26,13 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
 
 
     if (in_array($dataJson->usuario, array_column($allowUsers, "user"))) {
+        $userkey = array_search($dataJson->usuario, array_column($allowUsers, "user"));
         $ldapuser = $dataJson->usuario; 
         $ldappass = $dataJson->password;
         $ldaprole = $allowUsers[$userkey]["role"];
     
         //$decrypted = CryptoUtils::decrypt($dataJson->password);
         //$ldappass = trim($decrypted); 
-
-        $userkey = array_search($dataJson->usuario, array_column($allowUsers, "user"));
 
         if(empty($ldappass)){
             /* Password vacio */
