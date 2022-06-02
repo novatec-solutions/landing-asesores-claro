@@ -3,8 +3,8 @@
       <user:NotifySOAPHeader>
          <!--Optional:-->
          <user:TransId/>
-         <user:Username>PA00003102</user:Username>
-         <user:Password>aMc0Co3!</user:Password>
+         <user:Username><?=$data->Username?></user:Username>
+         <user:Password><?=$data->Password?></user:Password>
       </user:NotifySOAPHeader>
       <v1:headerRequest>
          <v1:channel/>
@@ -17,23 +17,23 @@
    <soapenv:Body>
       <cus:Root-Element>
          <cus:queryOttRequest>
-            <cus:invokeMethod>consultarrentascliente</cus:invokeMethod>
-            <cus:correlatorId>00000232550e8400e29b41d4a7164466551234</cus:correlatorId>
-            <cus:countryId>CO</cus:countryId>
+            <cus:invokeMethod><?=$data->invokeMethod?></cus:invokeMethod>
+            <cus:correlatorId><?=$data->correlatorId?></cus:correlatorId>
+            <cus:countryId><?=$data->countryId?></cus:countryId>
             <!--Optional:-->
-            <cus:startDate>2021-07-10T16:18:05Z</cus:startDate>
+            <cus:startDate><?=$data->startDate?></cus:startDate>
             <!--Optional:-->
-            <cus:endDate>2022-07-15T16:18:05Z</cus:endDate>
-            <cus:employeeId>352fegsf</cus:employeeId>
-            <cus:origin>MI_CLARO</cus:origin>
+            <cus:endDate><?=$data->endDate?></cus:endDate>
+            <cus:employeeId><?=$data->employeeId?></cus:employeeId>
+            <cus:origin><?=$data->origin?></cus:origin>
             <!--Optional:-->
-            <cus:serviceName>consultarrentascliente</cus:serviceName>
-            <cus:providerId>PA00003102</cus:providerId>
-            <cus:iccidManager>AMCOCO</cus:iccidManager>
+            <cus:serviceName><?=$data->serviceName?></cus:serviceName>
+            <cus:providerId><?=$data->providerId?></cus:providerId>
+            <cus:iccidManager><?=$data->iccidManager?></cus:iccidManager>
             <!--Zero or more repetitions:-->
             <cus:extensionInfo>
-               <cus:key>CUSTOMERID</cus:key>
-               <cus:value>11841025</cus:value>
+               <cus:key><?=$data->key?></cus:key>
+               <cus:value><?=$data->value?></cus:value>
             </cus:extensionInfo>
           </cus:queryOttRequest>
       </cus:Root-Element>

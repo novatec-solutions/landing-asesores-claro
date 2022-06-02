@@ -52,10 +52,8 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                     $dataRes = $dataRes->queryOttResponse;
                     $resultMessage = strval($dataRes->resultMessage);
                     $correlatorId = strval($dataRes->correlatorId);
-                    $providerId = strval($dataRes->providerId);
-                    $serviceName = strval($dataRes->serviceName);
                     
-                    $data = $dataRes->deviceList->device;
+                    $data = $dataRes->rentList->rent;
                     $arrayRespuesta = array();
                     for( $i = 0; $i <= count($data)-1; $i++ ){
                         $Respuesta = array();
@@ -68,9 +66,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                     $arrayResponse = [
                         'resultMessage'=>$resultMessage,
                         'correlatorId'=> $correlatorId,
-                        'providerId'=> $providerId,
-                        'serviceName'=> $serviceName,
-                        "Dispositivos"=>$arrayRespuesta
+                        "suscripciones"=>$arrayRespuesta
                     ];
                     $respuesta["response"] = $arrayResponse;
                     $respuesta["error"] = 0;
