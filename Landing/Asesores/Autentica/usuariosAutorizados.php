@@ -4,7 +4,7 @@
         /**
          * El usuario de red se debe parametrizar en mayúscula 
          */
-        array('user'=>'ETV5116A ', 'role'=>'Visualizador'),
+        array('user'=>'ETV5116A', 'role'=>'Visualizador'),
         array('user'=>'JEISSON.LIDUENA', 'role'=>'Visualizador'),
         array('user'=>'JORGE.BEJARANO.B', 'role'=>'Visualizador'),
         array('user'=>'JOSE.FERRER', 'role'=>'Visualizador'),
@@ -36,7 +36,7 @@
         array('user'=>'HUGO.ROMERO', 'role'=>'Visualizador'),
         array('user'=>'ICO0198A', 'role'=>'Visualizador'),
         array('user'=>'LUIS.DEVIA', 'role'=>'Visualizador'),
-        array('user'=>'ICF6344A', 'role'=>'Visualizador'),
+        array('user'=>'ICF6344A', 'role'=>'Administrador'),
         array('user'=>'EC8371O', 'role'=>'Visualizador'),
         array('user'=>'ICF8986C', 'role'=>'Visualizador'),
         array('user'=>'ICM5656H', 'role'=>'Visualizador'),

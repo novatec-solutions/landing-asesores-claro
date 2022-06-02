@@ -3,7 +3,7 @@
 require __DIR__ . '/../../Core/vendor/autoload.php';
 require __DIR__ . '/../../Core/Middleware.php';
 require_once __DIR__ . '/../../Core/utils/CurlClass.php';
-require 'usuariosAutorizados';
+require __DIR__ . '/usuariosAutorizados.php';
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -24,7 +24,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $dataJson = $request->getAttribute('dataJson');
     $allowUsers = allowUsers; //proviene del archivo usuariosAutorizados
 
-    //if (in_array($dataJson->usuario, $allowUsers)) {
+
     if (in_array($dataJson->usuario, array_column($allowUsers, "user"))) {
         $ldapuser = $dataJson->usuario; 
         $ldappass = $dataJson->password;
