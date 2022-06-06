@@ -97,7 +97,7 @@
         array('user'=>'E2969341', 'role'=>'Visualizador'),
         array('user'=>'E1840468', 'role'=>'Visualizador'),
         array('user'=>'EJT5910A', 'role'=>'Visualizador'),
-        array('user'=>'ECM1710B', 'role'=>'Visualizador'),
+        array('user'=>'ECM1710B', 'role'=>'Administrador'),
         array('user'=>'ETV0888A', 'role'=>'Visualizador'),
         array('user'=>'ETV0564A', 'role'=>'Visualizador'),
         array('user'=>'ICF8423A', 'role'=>'Visualizador'),
