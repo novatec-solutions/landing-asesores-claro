@@ -3,8 +3,8 @@
       <user:NotifySOAPHeader>
          <!--Optional:-->
          <user:TransId>?</user:TransId>
-         <user:Username><?=$data->Username?></user:Username>
-         <user:Password><?=$data->Password?></user:Password>
+         <user:Username>PA00003102</user:Username>
+         <user:Password>aMc0Co3!</user:Password>
       </user:NotifySOAPHeader>
       <v1:headerRequest>
          <v1:channel>1</v1:channel>
@@ -17,20 +17,20 @@
    <soapenv:Body>
       <cus:Root-Element>
          <cus:queryUserOttRequest>
-            <cus:invokeMethod><?=$data->invokeMethod?></cus:invokeMethod>
-            <cus:correlatorId><?=$data->correlatorId?></cus:correlatorId>
-            <cus:countryId><?=$data->countryId?></cus:countryId>
+            <cus:invokeMethod>consultardatoscliente</cus:invokeMethod>
+            <cus:correlatorId>00000232550e8400e29b41d4a716446655449899</cus:correlatorId>
+            <cus:countryId>CO</cus:countryId>
             <cus:startDate><?=$data->startDate?></cus:startDate>
             <cus:endDate><?=$data->endDate?></cus:endDate>
-            <cus:employeeId><?=$data->employeeId?></cus:employeeId>
-            <cus:origin><?=$data->origin?></cus:origin>
+            <cus:employeeId>567shsgww3</cus:employeeId>
+            <cus:origin>MI_CLARO</cus:origin>
             <!--Optional:-->
-            <cus:serviceName><?=$data->serviceName?></cus:serviceName>
-            <cus:providerId><?=$data->providerId?></cus:providerId>
-            <cus:iccidManager><?=$data->iccidManager?></cus:iccidManager>
+            <cus:serviceName>consultardatoscliente</cus:serviceName>
+            <cus:providerId>PA00002812</cus:providerId>
+            <cus:iccidManager>AMCOCO</cus:iccidManager>
             <!--Zero or more repetitions:-->
             <cus:extensionInfo>
-               <cus:key><?=$data->key?></cus:key>
+               <cus:key>CUSTOMERID</cus:key>
                <cus:value><?=$data->value?></cus:value>
             </cus:extensionInfo>
          </cus:queryUserOttRequest>

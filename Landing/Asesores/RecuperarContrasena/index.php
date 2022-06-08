@@ -25,7 +25,7 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     
     $dataJson = $request->getAttribute('dataJson');
     $respuesta = array();
-    if( isset($dataJson->transactionId) && isset($dataJson->employeeId) && isset($dataJson->invokeMethod) ){
+    if( isset($dataJson->value) ){
     
         $reqXML = $this->view->fetch($this->requestTemplate, ['data' => $dataJson]);
 
