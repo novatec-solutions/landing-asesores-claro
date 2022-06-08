@@ -3,13 +3,13 @@
       <user:NotifySOAPHeader>
          <!--Optional:-->
          <user:TransId></user:TransId>
-         <user:Username><?=$data->Username?></user:Username>
-         <user:Password><?=$data->Password?></user:Password>
+         <user:Username>PA00003102</user:Username>
+         <user:Password>aMc0Co3!B</user:Password>
       </user:NotifySOAPHeader>
       <v1:headerRequest>
          <v1:channel></v1:channel>
          <!--Optional:-->
-         <v1:transactionId><?=$data->transactionId?></v1:transactionId>
+         <v1:transactionId>202202258103435</v1:transactionId>
          <!--Optional:-->
          <v1:ipApplication></v1:ipApplication>
       </v1:headerRequest>
@@ -17,15 +17,15 @@
    <soapenv:Body>
       <cus:Root-Element>
          <cus:updateUserOttRequest>
-            <cus:invokeMethod><?=$data->invokeMethod?></cus:invokeMethod>
-            <cus:correlatorId><?=$data->correlatorId?></cus:correlatorId>
-            <cus:countryId><?=$data->countryId?></cus:countryId>
-            <cus:userId><?=$data->userId?></cus:userId>
-            <cus:employeeId><?=$data->employeeId?></cus:employeeId>
-            <cus:origin><?=$data->origin?></cus:origin>
-            <cus:serviceName><?=$data->serviceName?></cus:serviceName>
-            <cus:providerId><?=$data->providerId?></cus:providerId>
-            <cus:iccidManager><?=$data->iccidManager?></cus:iccidManager>
+            <cus:invokeMethod>modificaremail</cus:invokeMethod>
+            <cus:correlatorId>00000232550e8400e29b41d4a716446655440080</cus:correlatorId>
+            <cus:countryId>CO</cus:countryId>
+            <cus:userId>MI_CLARO</cus:userId>
+            <cus:employeeId>6666869</cus:employeeId>
+            <cus:origin>MI_CLARO</cus:origin>
+            <cus:serviceName>modificaremail</cus:serviceName>
+            <cus:providerId>PA00002812</cus:providerId>
+            <cus:iccidManager>AMCOCO</cus:iccidManager>
             <!--Zero or more repetitions:-->
             <cus:extensionInfo>
                <cus:key>CUSTOMERID</cus:key>
