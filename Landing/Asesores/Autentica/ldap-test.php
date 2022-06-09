@@ -25,4 +25,5 @@
         $ldapbind = ldap_bind($ldapconn, $ldap["rdn"], $ldap["pass"]);
         
         var_dump($ldapbind);
+        var_dump($_GET);
     }
