@@ -24,8 +24,9 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
     $dataJson = $request->getAttribute('dataJson');
     $allowUsers = allowUsers; //proviene del archivo usuariosAutorizados
 
-
-    if (in_array($dataJson->usuario, array_column($allowUsers, "user"))) {
+    $users = array_column($allowUsers, "user");
+    $selectUser = $dataJson->usuario;
+    if (preg_grep( "/$selectUser/i" , $users )) {
         $userkey = array_search($dataJson->usuario, array_column($allowUsers, "user"));
         $ldapuser = $dataJson->usuario; 
         $ldappass = $dataJson->password;
