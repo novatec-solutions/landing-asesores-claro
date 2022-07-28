@@ -33,10 +33,10 @@ $app->map(['POST'], '/', function (Request $request, Response $response, array $
                 $users = array_column($allowUsers, "usuario");
                 $selectUser = $dataJson->usuario;
                 if (preg_grep( "/$selectUser/i" , $users )) {
-                    $userkey = array_search($dataJson->usuario, array_column($allowUsers, "usuario"));
+                    $userkey = array_keys(preg_grep("/$selectUser/i", $users));
                     $ldapuser = $dataJson->usuario; 
                     $ldappass = $dataJson->password;
-                    $ldaprole = $allowUsers[$userkey]["rol"];
+                    $ldaprole = $allowUsers[$userkey[0]]->rol;
                     
                     if(empty($ldappass)){
                         /* Password vacio */
